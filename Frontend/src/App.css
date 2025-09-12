@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body{
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  --font-family: 'Inter', sans-serif;
+  --border-radius: 12px;
+  --transition: 0.3s ease;
+
+  /* Light theme */
+  --bg-color: #f9fafb;
+  --text-color: #111827;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --button-bg: #2563eb;
+  --button-text: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #111827;
+    --text-color: #f9fafb;
+    --card-bg: #1f2937;
+    --input-bg: #374151;
+    --border-color: #4b5563;
+    --button-bg: #3b82f6;
+    --button-text: #ffffff;
+  }
+}
