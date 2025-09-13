@@ -1,13 +1,21 @@
 //create server
 import express from "express";
 import cookieParser from "cookie-parser"; 
+import cors from "cors"
 import authRouter from "./routes/auth.route.js";  
 import foodRouter from "./routes/food.route.js"
 
 const app = express();
 
+app.use(cors({
+    origin: "http://localhost:5173",
+    methods: "GET, POST",
+    credentials: true
+}))
+
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: true })); 
 // app.use (cors({
 //     origin: 'http://localhost:5173',
 //     method: "GET,POST",

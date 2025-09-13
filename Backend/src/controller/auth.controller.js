@@ -1,4 +1,3 @@
-
 import userModel from "../model/user.model.js";
 import foodPartnerModel from "../model/foodpartner.model.js";
 import bcrypt from "bcrypt"
@@ -6,6 +5,7 @@ import jwt from "jsonwebtoken"
 
 async function registerUser(req, res) {
     const { fullname, email, password } = req.body;
+    
     try {
         const ifUserAlreadyExists = await userModel.findOne({
             email

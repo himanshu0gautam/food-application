@@ -4,17 +4,22 @@ import UserRegister from '../component/UserRegister'
 import UserLogin from "../component/UserLogin"
 import FoodPartnerRegister from "../component/PartnerRegister"
 import FoodPartnerLogin from "../component/PartnerLogin"
+import Home from '../component/home/Home'
+import CreateFood from '../component/food/CreateFood'
 
 const AppRoutes = () => {
   return (
-  <Router>
-    <Routes>
-      <Route path="/user/register" element={<UserRegister />} />
-      <Route path="/user/login" element={ <UserLogin />} />
+    <Router>
+      <Routes>
+        <Route path="/user/register" element={<UserRegister />} />
+        <Route path="/user/login" element={<UserLogin />} />
         <Route path="/food-partner/register" element={<FoodPartnerRegister />} />
         <Route path="/food-partner/login" element={<FoodPartnerLogin />} />
-    </Routes>
-  </Router>
+        <Route path="/" element={<UserRegister />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/create-food" element={<CreateFood />} />
+      </Routes>
+    </Router>
   )
 }
 

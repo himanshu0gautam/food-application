@@ -1,0 +1,160 @@
+/* :root {
+  --overlay-bg: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.2));
+}
+
+.reel {
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  background: #000;
+}
+
+.item {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none; 
+}
+
+.meta {
+  pointer-events: auto;
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  max-width: 92%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.2;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 2.4em;
+}
+
+.visitBtn {
+  appearance: none;
+  border: none;
+  background: #ff4757;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.visitBtn:active {
+  transform: translateY(1px);
+}
+
+.visuallyHidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .meta {
+    max-width: 640px;
+  }
+  .description { font-size: 16px; }
+} */
+
+
+
+.reel {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory; /* snap vertically */
+  scrollbar-width: none; /* hide scrollbar for Firefox */
+}
+
+.reel::-webkit-scrollbar {
+  display: none; /* hide scrollbar for Chrome/Safari */
+}
+
+.item {
+  position: relative;
+  flex: 0 0 100vh; /* full viewport height */
+  width: 100%;
+  scroll-snap-align: start; /* snap at the start */
+  overflow: hidden;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fill the screen like TikTok */
+}
+
+.overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: #fff;
+  z-index: 2;
+  pointer-events: none; /* let scroll through */
+}
+
+.meta {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+  border-radius: 10px;
+  pointer-events: auto; /* allow button clicks */
+}
+
+.description {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.visitBtn {
+  background: #ff5722;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.visitBtn:hover {
+  background: #e64a19;
+}
