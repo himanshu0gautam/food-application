@@ -1,6 +1,6 @@
 import express from "express"
 import { registerUser, loginUser, logoutUser,
-     registerPartner, loginfoodPartner, logoutFoodPartner } from "../controller/auth.controller.js";
+     registerPartner, loginfoodPartner, logoutFoodPartner, foodPartnerProfile } from "../controller/auth.controller.js";
 
 const router = express.Router();
 
@@ -12,6 +12,7 @@ router.get("/user/logout", logoutUser)
 //foodpartner auth api
 router.post("/food-Partner/register", registerPartner )
 router.post("/food-Partner/login", loginfoodPartner )
+router.get("/food-partner/profile", foodPartnerProfile )
 router.get("/food-Partner/logout", logoutFoodPartner )
 
 

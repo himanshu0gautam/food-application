@@ -1,4 +1,6 @@
 import foodModel from "../model/food.model.js";
+import likemodel from "../model/like.model.js";
+import saveModel from "../model/save.model.js";
 import { cloudinary } from "../services/storage.service.js";
 
 
@@ -10,7 +12,11 @@ async function createFood(req, res) {
         //     buffer, "")
         // console.log(fileUploadResult);
 
-        const foodUploadResult = await cloudinary.uploader.upload(req.file.path, {
+        // multer may provide file as req.file (single) or req.files (array) depending on middleware
+        const file = req.file || (Array.isArray(req.files) && req.files[0]);
+        if (!file) return res.status(400).json({ message: 'No file uploaded' });
+
+        const foodUploadResult = await cloudinary.uploader.upload(file.path, {
             folder: "foodModel",
             resource_type: "video",
         })
@@ -29,7 +35,9 @@ async function createFood(req, res) {
         });
 
     } catch (error) {
-        console.log("upload eroorrrr", error);
+        console.error("upload error:", error);
+        // Return a helpful error response for the client
+        return res.status(500).json({ message: 'Upload failed', error: error.message });
 
     }
 
@@ -45,7 +53,72 @@ async function getFoodItems(req, res) {
 
 }
 
+// like controller
+async function likeFoodController(req, res) {
+    const { foodId } = req.body;
 
-export { createFood, getFoodItems }   
+    const user = req.user
+
+    const isAlreadyLiked = await likemodel.findOne({
+        user: user._id,
+        food: foodId
+    })
+
+    if (isAlreadyLiked) {
+        await likemodel.deleteOne({
+            user: user._id,
+            food: foodId
+        })
+
+        await foodModel.findByIdAndUpdate(foodId, {
+            $inc: { likeCount: -1 }
+        })
+
+        return res.status(200).json({ message: "food unlike" })
+    }
+
+    const like = await likemodel.create({
+        user: user._id,
+        food: foodId
+    })
+
+    await foodModel.findByIdAndUpdate(foodId, {
+        $inc: { likeCount: 1 }
+    })
+
+    res.status(201).json({ message: "food like", like })
+}
+
+// video save controller
+async function saveFood(req, res) {
+    const { foodId } = req.body;
+
+    const user = req.user;
+
+    const isAlreadySaved = await saveModel.findOne({
+        user: user._id,
+        food: foodId
+    })
+
+    if (isAlreadySaved) {
+        await saveModel.deleteOne({
+            user: user._id,
+            food: foodId
+        })
+        return res.status(200).json({
+            message: "food unsaved"
+        })
+    }
+
+    const save = await saveModel.create({
+        user: user._id,
+        food: foodId
+    })
+    res.status(201).json({
+        message: "food saved",save
+    })
+}
+
+export { createFood, getFoodItems, likeFoodController, saveFood }
 
 // add some functionality like DAOfile and express validation

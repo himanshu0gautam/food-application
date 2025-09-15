@@ -15,6 +15,14 @@ const foodPartnerSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, "password is required"],
+    },
+    BusinessName: {
+        type: String,
+        required: true,
+    },
+    shopDetails: {
+        type: String,
+        required: true,
     }
 }, {timestamps: true})
 

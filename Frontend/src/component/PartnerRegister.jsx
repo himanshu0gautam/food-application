@@ -23,6 +23,8 @@ const PartnerRegister = () => {
             data.append("fullname", formData.fullname);
             data.append("email", formData.email);
             data.append("password", formData.password);
+            data.append("BusinessName", formData.BusinessName);
+            data.append("ShopDetils", formData.ShopDetils);
 
             await axios.post("http://localhost:3000/api/auth/food-partner/register", data, {
                 headers: { "Content-Type": "application/json" },
