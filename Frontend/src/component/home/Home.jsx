@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Home.module.css'
 import axios from 'axios'
+import { FaRegHeart } from "react-icons/fa";
+import { FaRegComment } from "react-icons/fa";
+import { FiBookmark } from "react-icons/fi";
+import { BsSave } from "react-icons/bs";
+import { IoHomeOutline } from "react-icons/io5";
+import { BsCart3 } from "react-icons/bs";
 import { useNavigate, Link } from 'react-router-dom'
 
 
@@ -179,6 +185,41 @@ const Home = () => {
           </div>
         </section>
       ))}
+      {/* Right-side action icons (like, comment, save, cart) */}
+      <aside className={styles.actions} aria-hidden>
+        <div className={styles.actionItem}>
+          <span className={styles.icon}><FaRegHeart /></span>
+          <span className={styles.count}>like-30</span>
+        </div>
+        <div className={styles.actionItem}>
+          <span className={styles.icon}><FaRegComment /></span>
+          <span className={styles.count}>comment-15</span>
+        </div>
+        <div className={styles.actionItem}>
+          <Link to="/save" className={styles.actionLink}>
+            <span className={styles.icon}><FiBookmark /></span>
+            {/* <span className={styles.count}>Save-25</span> */}
+          </Link>
+        </div>
+        <div className={styles.actionItem}>
+          <span className={styles.icon}><BsCart3 /></span>
+          <span className={styles.count}>Cart</span>
+        </div>
+      </aside>
+
+      {/* Bottom navigation bar */}
+      <nav className={styles.bottomNav} aria-label="bottom navigation">
+        <button className={styles.navButton} aria-label="record"></button>
+        <Link to="/home" className={styles.navLink}>
+          <div className={styles.navItem}><IoHomeOutline /><div className={styles.navLabel}>Home</div></div>
+        </Link>
+        <Link to="/save" className={styles.navLink}>
+          <div className={styles.navItem}><BsSave /><div className={styles.navLabel}>Save</div></div>
+        </Link>
+        <Link to="/buy" className={styles.navLink}>
+          <div className={styles.buyNow}>→<div className={styles.navLabel}>Buy Now</div></div>
+        </Link>
+      </nav>
     </div>
   )
 }
