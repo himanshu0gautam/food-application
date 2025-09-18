@@ -16,7 +16,7 @@ const Save = () => {
     <div className={styles.container}>
       <header className={styles.header}>
         <h2>Saved Videos</h2>
-        <Link to="/">Back</Link>
+        <Link to="/home">Back</Link>
       </header>
       <div className={styles.grid}>
         {saved.length === 0 && <div className={styles.empty}>No saved videos yet.</div>}

@@ -10,25 +10,6 @@ import { BsCart3 } from "react-icons/bs";
 import { useNavigate, Link } from 'react-router-dom'
 
 
-// const videos = [
-//   {
-//     id: 1, src: 'https://res.cloudinary.com/divy12kic/video/upload/v1757682022/foodModel/l33cc4wqnyizra9gge80.mp4',
-//     desc: 'Delicious street food from a local vendor. Try the spicy special today!'
-//   },
-//   {
-//     id: 2, src: 'https://res.cloudinary.com/divy12kic/video/upload/v1757682022/foodModel/l33cc4wqnyizra9gge80.mp4',
-//     desc: 'Freshly made desserts available at limited times—don\'t miss out.'
-//   },
-//   {
-//     id: 3, src: 'https://res.cloudinary.com/divy12kic/video/upload/v1757682022/foodModel/l33cc4wqnyizra9gge80.mp4',
-//     desc: 'Chef\'s recommendation: signature dish with seasonal ingredients.'
-//   },
-//   {
-//     id: 4, src: 'https://res.cloudinary.com/divy12kic/video/upload/v1757682022/foodModel/l33cc4wqnyizra9gge80.mp4',
-//     desc: 'Exclusive partner offer: get discounts when you visit the store.'
-//   },
-// ]
-
 const Home = () => {
   const [videos, setVideos] = useState([])
   const containerRef = useRef(null)
@@ -155,6 +136,19 @@ const Home = () => {
   }, [])
 
 
+async function likeVideo(item) {
+  const response = await axios.post("http://localhost:3000/api/food/like",{ foodId: item._id}, {withCredentials: true})
+  
+  if(response.data.like){
+    console.log("video liked");
+    setVideos((prev) => prev.map((v) => v._id === item._id ? {...v, likeCount: v.likeCount + 1} : v))
+  }else{
+    console.log("video unliked");
+    setVideos((prev) => prev.map((v) => v._id === item._id ? {...v, likeCount: v.likeCount - 1} : v))
+  }
+  
+}
+
 
 
   return (
@@ -191,12 +185,12 @@ const Home = () => {
           <span className={styles.icon}><FaRegHeart /></span>
           <span className={styles.count}>like-30</span>
         </div>
-        <div className={styles.actionItem}>
-          <span className={styles.icon}><FaRegComment /></span>
+        <div  className={styles.actionItem}>
+          <span onClick={() => likeVideo(item)} className={styles.icon}><FaRegComment /></span>
           <span className={styles.count}>comment-15</span>
         </div>
         <div className={styles.actionItem}>
-          <Link to="/save" className={styles.actionLink}>
+          <Link to="" className={styles.actionLink}>
             <span className={styles.icon}><FiBookmark /></span>
             {/* <span className={styles.count}>Save-25</span> */}
           </Link>
