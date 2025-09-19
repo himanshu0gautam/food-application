@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const likeSchema = new mongoose.Schema({
-    User:{
+    user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
@@ -10,6 +10,9 @@ const likeSchema = new mongoose.Schema({
         ref: "food",
     },
 }, {timestamps: true})
+
+// unique index: ek user ek hi video ko ek hi baar like kar sake
+likeSchema.index({ User: 1, food: 1 }, { unique: true });
 
 const likemodel = mongoose.model("like", likeSchema)
 

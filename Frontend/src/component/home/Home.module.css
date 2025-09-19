@@ -16,7 +16,7 @@
 
 .item {
   position: relative;
-  height: calc(110vh - var(--bottom-nav-height));
+  height: calc(111vh - var(--bottom-nav-height));
   width: 100%;
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -25,22 +25,31 @@
   justify-content: center;
 }
 
-.video {
-  height: 93%;
-  width: 100%;
-  object-fit: cover;
+.actionColumn {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px
 }
 
+/* overlay containing Visit Store and description */
 .overlay {
   position: absolute;
-  bottom: 56px;
+  /* bottom: calc(var(--bottom-nav-height) + 8px); */
   left: 0;
   right: 0;
+  bottom: 90px;
   display: flex;
   justify-content: center;
   pointer-events: none;
   z-index: 40;
   /* keep overlay above videos and actions */
+}
+
+.video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover
 }
 
 .meta {
@@ -62,6 +71,7 @@
   text-align: center;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -104,14 +114,17 @@
 
 /* Right-side action icons */
 .actions {
-  position: fixed;
-  right: 4px;
-  top: 45%;
+  /* position: fixed; */
+  /* right: 4px;
+  top: 45%; */
   display: flex;
   flex-direction: column;
   gap: 18px;
   z-index: 30;
   pointer-events: none;
+  position: absolute;
+  right: 12px;
+  bottom: 80px;
 }
 
 .actionItem {
@@ -145,7 +158,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: 50px;
+  height: var(--bottom-nav-height);
   background: rgba(34, 34, 34, 0.95);
   border-top: 2px solid rgba(255, 255, 255, 0.08);
   display: flex;

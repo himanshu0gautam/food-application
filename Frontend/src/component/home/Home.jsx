@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Home.module.css'
 import axios from 'axios'
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa";
 import { FiBookmark } from "react-icons/fi";
 import { BsSave } from "react-icons/bs";
@@ -131,30 +131,110 @@ const Home = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3000/api/food/upload", { withCredentials: true })
-      .then(res => setVideos(res.data.foodItems))
+      .then(res => {
+        console.log(res.data);
+
+        setVideos(res.data.foodItems)
+      })
       .catch(err => console.error("Video fetch error:", err))
   }, [])
 
 
-async function likeVideo(item) {
-  const response = await axios.post("http://localhost:3000/api/food/like",{ foodId: item._id}, {withCredentials: true})
-  
-  if(response.data.like){
-    console.log("video liked");
-    setVideos((prev) => prev.map((v) => v._id === item._id ? {...v, likeCount: v.likeCount + 1} : v))
-  }else{
-    console.log("video unliked");
-    setVideos((prev) => prev.map((v) => v._id === item._id ? {...v, likeCount: v.likeCount - 1} : v))
-  }
-  
-}
+  const likefood = async (food) => {
+    try {
 
+      const res = await axios.post("http://localhost:3000/api/food/like", {
+        foodId: food._id,
+      }, { withCredentials: true });
+
+      const { like, likeCount } = res.data;
+
+      setVideos(prev => prev.map(f => f._id === food._id ? { ...f, likeCount, userLike: like } : f
+      ))
+
+    } catch (error) {
+      console.error(error.response?.data || error.message);
+    }
+  };
 
 
   return (
+    // <div className={styles.reel} ref={containerRef}>
+    //   {videos.map(v => (
+    //     <section data-id={v._id} className={styles.item} key={v._id} ref={el => el && videoRefs.current.set(v._id, el)}>
+    //       <video
+    //         className={styles.video}
+    //         src={v.foodvideo}
+    //         muted
+    //         playsInline
+    //         loop
+    //         preload="metadata"
+    //         autoPlay
+    //       />
+
+    //       <div className={styles.overlay} aria-hidden>
+    //         <div className={styles.meta}>
+    //           <div className={styles.description}>{v.description}</div>
+    //           <Link to={"/partner-profile"}>
+    //             <button
+    //               className={styles.visitBtn}
+    //             >
+    //               Visit Store
+    //             </button>
+    //           </Link>
+    //         </div>
+    //       </div>
+    //     </section>
+    //   ))}
+
+    //   <div className={styles.actions} aria-hidden>
+    //     {videos.map(v => (
+    //       <div key={v._id} className={styles.actionColumn}>
+    //         <div className={styles.actionItem} onClick={() => likefood(v)}>
+    //           <span className={styles.icon}>
+    //            {v.userLike ? <FaHeart color="red" /> : <FaRegHeart />}</span>
+    //           <span className={styles.count}>{v.likeCount || 0}</span>
+    //         </div>
+    //         <div className={styles.actionItem} onClick={() => openComments(v)}>
+    //           <span className={styles.icon}><FaRegComment /></span>
+    //           <span className={styles.count}>{v.commentCount || 0}</span>
+    //         </div>
+    //         <div className={styles.actionItem} onClick={() => saveVideo(v)}>
+    //           <span className={styles.icon}><FiBookmark color={v.saved ? 'gold' : undefined} /></span>
+    //           <span className={styles.count}>{v.saveCount || 0}</span>
+    //         </div>
+    //         <div className={styles.actionItem}>
+    //           <span className={styles.icon}><BsCart3 /></span>
+    //           <span className={styles.count}>{v.cartCount || '-'}</span>
+    //         </div>
+    //       </div>
+    //     ))}
+    //   </div>
+
+    //   {/* Bottom navigation bar */}
+    //   <nav className={styles.bottomNav} aria-label="bottom navigation">
+    //     <button className={styles.navButton} aria-label="record"></button>
+    //     <Link to="/home" className={styles.navLink}>
+    //       <div className={styles.navItem}><IoHomeOutline /><div className={styles.navLabel}>Home</div></div>
+    //     </Link>
+    //     <Link to="/save" className={styles.navLink}>
+    //       <div className={styles.navItem}><BsSave /><div className={styles.navLabel}>Save</div></div>
+    //     </Link>
+    //     <Link to="/buy" className={styles.navLink}>
+    //       <div className={styles.buyNow}>→<div className={styles.navLabel}>Buy Now</div></div>
+    //     </Link>
+    //   </nav>
+    // </div>
+
+
     <div className={styles.reel} ref={containerRef}>
       {videos.map(v => (
-        <section className={styles.item} key={v._id} ref={el => el && videoRefs.current.set(v._id, el)}>
+        <section
+          data-id={v._id}
+          className={styles.item}
+          key={v._id}
+          ref={el => el && videoRefs.current.set(v._id, el)}
+        >
           <video
             className={styles.video}
             src={v.foodvideo}
@@ -169,52 +249,66 @@ async function likeVideo(item) {
             <div className={styles.meta}>
               <div className={styles.description}>{v.description}</div>
               <Link to={"/partner-profile"}>
-                <button
-                  className={styles.visitBtn}
-                >
-                  Visit Store
-                </button>
+                <button className={styles.visitBtn}>Visit Store</button>
               </Link>
             </div>
           </div>
-        </section>
-      ))}
-      {/* Right-side action icons (like, comment, save, cart) */}
-      <aside className={styles.actions} aria-hidden>
-        <div className={styles.actionItem}>
-          <span className={styles.icon}><FaRegHeart /></span>
-          <span className={styles.count}>like-30</span>
-        </div>
-        <div  className={styles.actionItem}>
-          <span onClick={() => likeVideo(item)} className={styles.icon}><FaRegComment /></span>
-          <span className={styles.count}>comment-15</span>
-        </div>
-        <div className={styles.actionItem}>
-          <Link to="" className={styles.actionLink}>
-            <span className={styles.icon}><FiBookmark /></span>
-            {/* <span className={styles.count}>Save-25</span> */}
-          </Link>
-        </div>
-        <div className={styles.actionItem}>
-          <span className={styles.icon}><BsCart3 /></span>
-          <span className={styles.count}>Cart</span>
-        </div>
-      </aside>
 
-      {/* Bottom navigation bar */}
-      <nav className={styles.bottomNav} aria-label="bottom navigation">
-        <button className={styles.navButton} aria-label="record"></button>
-        <Link to="/home" className={styles.navLink}>
-          <div className={styles.navItem}><IoHomeOutline /><div className={styles.navLabel}>Home</div></div>
-        </Link>
-        <Link to="/save" className={styles.navLink}>
-          <div className={styles.navItem}><BsSave /><div className={styles.navLabel}>Save</div></div>
-        </Link>
-        <Link to="/buy" className={styles.navLink}>
-          <div className={styles.buyNow}>→<div className={styles.navLabel}>Buy Now</div></div>
-        </Link>
-      </nav>
+          {/* 👇 Action bar like, comment, save */}
+
+          <div className={styles.actions} aria-hidden>
+            <div className={styles.actionColumn}>
+              {/* Like */}
+              <div className={styles.actionItem} onClick={() => likefood(v)}>
+                <span className={styles.icon}>
+                  {v.userLike ? <FaHeart color="red" /> : <FaRegHeart />}
+                </span>
+                <span className={styles.count}>{v.likeCount || 0}</span>
+              </div>
+
+              {/* Comment */}
+              <div className={styles.actionItem} onClick={() => openComments(v)}>
+                <span className={styles.icon}><FaRegComment /></span>
+                <span className={styles.count}>{v.commentCount || 0}</span>
+              </div>
+
+              {/* Save */}
+              <div className={styles.actionItem} onClick={() => saveVideo(v)}>
+                <span className={styles.icon}>
+                  <FiBookmark color={v.saved ? "gold" : undefined} />
+                </span>
+                <span className={styles.count}>{v.saveCount || 0}</span>
+              </div>
+
+              {/* Cart */}
+              <div className={styles.actionItem}>
+                <span className={styles.icon}><BsCart3 /></span>
+                <span className={styles.count}>{v.cartCount || "-"}</span>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <nav className={styles.bottomNav} aria-label="bottom navigation">
+            <button className={styles.navButton} aria-label="record"></button>
+            <Link to="/home" className={styles.navLink}>
+              <div className={styles.navItem}><IoHomeOutline /><div className={styles.navLabel}>Home</div></div>
+            </Link>
+            <Link to="/save" className={styles.navLink}>
+              <div className={styles.navItem}><BsSave /><div className={styles.navLabel}>Save</div></div>
+            </Link>
+            <Link to="/buy" className={styles.navLink}>
+              <div className={styles.buyNow}>→<div className={styles.navLabel}>Buy Now</div></div>
+            </Link>
+          </nav>
+
+        </section>
+
+      ))}
     </div>
+
   )
 }
 

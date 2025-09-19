@@ -57,10 +57,10 @@ async function getFoodItems(req, res) {
 async function likeFoodController(req, res) {
     const { foodId } = req.body;
 
-    const user = req.user
+    const user = req.user;
 
     const isAlreadyLiked = await likemodel.findOne({
-        user: user._id,
+        user: user.id,
         food: foodId
     })
 
@@ -68,25 +68,35 @@ async function likeFoodController(req, res) {
         await likemodel.deleteOne({
             user: user._id,
             food: foodId
-        })
+        });
 
-        await foodModel.findByIdAndUpdate(foodId, {
-            $inc: { likeCount: -1 }
-        })
+        const updated = await foodModel.findByIdAndUpdate(
+            foodId, { $inc: { likeCount: -1 }},
+             { new: true }
+        );
 
-        return res.status(200).json({ message: "food unlike" })
+        return res.status(200).json({
+        like: false,
+        likeCount: updated.likeCount,
+        message: "Unliked successfully",
+      });
     }
 
-    const like = await likemodel.create({
+     await likemodel.create({
         user: user._id,
         food: foodId
     })
 
-    await foodModel.findByIdAndUpdate(foodId, {
-        $inc: { likeCount: 1 }
-    })
+    const updated = await foodModel.findByIdAndUpdate(
+        foodId, { $inc: { likeCount: 1 }},
+        { new: true }
+    );
 
-    res.status(201).json({ message: "food like", like })
+     return res.status(201).json({
+      like: true,
+      likeCount: updated.likeCount,
+      message: "Liked successfully",
+    });
 }
 
 // video save controller
@@ -115,7 +125,7 @@ async function saveFood(req, res) {
         food: foodId
     })
     res.status(201).json({
-        message: "food saved",save
+        message: "food saved", save
     })
 }
 
