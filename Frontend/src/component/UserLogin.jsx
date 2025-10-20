@@ -15,6 +15,8 @@ const UserLogin = () => {
         try {
             const res = await axios.post('http://localhost:3000/api/auth/user/login', { email, password }, { withCredentials: true });
             // if login successful, you may receive a token or cookie. Navigate to /home
+            console.log(res.data);
+            
             navigate('/home');
         } catch (err) {
             console.error('Login error', err);

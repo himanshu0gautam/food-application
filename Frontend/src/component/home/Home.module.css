@@ -16,7 +16,7 @@
 
 .item {
   position: relative;
-  height: calc(111vh - var(--bottom-nav-height));
+  height: calc(108vh - var(--bottom-nav-height));
   width: 100%;
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -32,18 +32,27 @@
   gap: 16px
 }
 
-/* overlay containing Visit Store and description */
-.overlay {
+/* .overlay {
   position: absolute;
-  /* bottom: calc(var(--bottom-nav-height) + 8px); */
   left: 0;
   right: 0;
-  bottom: 90px;
+  bottom: 65px;
   display: flex;
   justify-content: center;
   pointer-events: none;
   z-index: 40;
-  /* keep overlay above videos and actions */
+  width: 100%;
+} */
+
+.overlaybtn {
+  position: absolute;
+  bottom: 75px;
+  /* background-color: violet; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 40;
+  transition-timing-function: ease-in-out;
 }
 
 .video {
@@ -52,17 +61,36 @@
   object-fit: cover
 }
 
-.meta {
+/* .meta {
   pointer-events: auto;
   background: rgba(0, 0, 0, 0.35);
   color: #fff;
   padding: 10px 14px;
   border-radius: 10px;
-  max-width: 92%;
+  width: 100%;
+  height: 8vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 8px;
   align-items: center;
+} */
+
+.metabtn {
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  padding: 0.5rem 1.6rem;
+  border-radius: 20px;
+  width: 90%;
+}
+
+.swipebtn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.2rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  cursor: pointer;
 }
 
 .description {
@@ -76,21 +104,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-height: 2.4em;
-}
-
-.visitBtn {
-  appearance: none;
-  border: none;
-  background: #fff;
-  color: black;
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.visitBtn:active {
-  transform: translateY(1px);
 }
 
 .visuallyHidden {
@@ -124,7 +137,7 @@
   pointer-events: none;
   position: absolute;
   right: 12px;
-  bottom: 80px;
+  bottom: 150px;
 }
 
 .actionItem {
@@ -169,8 +182,8 @@
 
 .navButton {
   background: rgba(100, 100, 100, 0.95);
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: none;
   font-size: 18px;
@@ -190,17 +203,23 @@
 
 .navLabel {
   font-size: 12px;
-  margin-top: 4px;
   color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  border: 1px solid gray;
+  padding: 0.7rem 0.8rem;
+  gap: 0.4rem;
 }
 
 .buyNow {
-  background-color: red;
+  background-color: rgb(101, 98, 98);
   color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.2rem 0.8rem;
+  padding: 0.4rem 0.8rem;
 }
 
 @media (min-width: 768px) {
@@ -218,71 +237,6 @@
 
 
 
-/* .reel {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100%;
-  overflow-y: scroll;
-  scrollbar-width: none; 
-}
-
-.reel::-webkit-scrollbar {
-  display: none; 
-}
-
-.item {
-  position: relative;
-  flex: 0 0 100vh; 
-  width: 100%;
-  scroll-snap-align: start; 
-  overflow: hidden;
-}
-
-.video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; 
-}
-
-.overlay {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  color: #fff;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.meta {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 1rem;
-  border-radius: 10px;
-  pointer-events: auto; 
-}
-
-.description {
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-}
-
-.visitBtn {
-  background: #ff5722;
-  border: none;
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.visitBtn:hover {
-  background: #e64a19;
-} */
-
-
-
 /* --- 3. Tablet and Desktop Styles (Responsive) --- */
 
 /* For screens larger than 768px (tablets and up) */
@@ -291,7 +245,7 @@
   .reel {
     /* Center the reel and give it a max-width to create the "card" effect */
     max-width: 450px;
-    height: 90vh;
+    height: 100vh;
     /* Make it slightly smaller than the viewport height */
     margin: 5vh auto;
     /* Vertically and horizontally center it */
@@ -302,7 +256,7 @@
 
   .item {
     /* The height of each item now matches the reel container minus nav */
-    height: calc(90vh - var(--bottom-nav-height));
+    height: calc(100vh - var(--bottom-nav-height));
     border-radius: var(--card-border-radius);
   }
 
@@ -314,3 +268,125 @@
     font-size: 1rem;
   }
 }
+
+
+
+
+
+
+.swipebtn:hover {
+  background-color: #4338ca;
+}
+
+.swipebtn:active {
+  transform: scale(0.98);
+}
+
+/* Style for the icon inside the button (RxDoubleArrowUp) */
+.swipebtn span {
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  animation: bounce-up 1.5s infinite;
+}
+
+@keyframes bounce-up {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-5px);
+  }
+
+  60% {
+    transform: translateY(-2px);
+  }
+}
+
+/* --- 2. Details Modal (isdetails) --- */
+
+.detailsModal {
+  /* Modal Overlay */
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 90px;
+  z-index: 90;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  width: 90%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 25vh;
+  border-radius: 20px;
+  overflow-y: auto;
+  animation: slide-up 0.3s ease-out forwards;
+}
+
+.detailsModalContent {
+  width: 100%;
+  /* background-color: salmon; */
+  display: flex;
+  flex-direction: column;
+}
+
+.visitBtn {
+  appearance: none;
+  border: none;
+  background: rgba(204, 178, 178, 0.25);
+  color: white;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.visitBtn:active {
+  transform: translateY(1px);
+}
+
+@keyframes slide-up {
+  from {
+    /* Start position is off-screen below */
+    transform: translate(-50%, 100%);
+  }
+
+  to {
+    /* End position is at the bottom edge */
+    transform: translate(-50%, 0);
+  }
+}
+
+.detailsModalContent h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.detailsModalContent p {
+  margin-bottom: 24px;
+  color: var(--text-color);
+}
+
+.detailsModalContent button {
+  background-color: var(--secondary-color);
+  font-size: 22px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.detailsModal button:hover {
+  background-color: #c0d9e0;
+}
+
+

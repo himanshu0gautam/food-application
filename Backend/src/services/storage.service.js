@@ -1,7 +1,7 @@
 // import ImageKit from "imagekit";
 import { v2 as cloudinary } from "cloudinary"
 import dotenv from "dotenv";
-import { model } from "mongoose";
+
 
 dotenv.config();
 

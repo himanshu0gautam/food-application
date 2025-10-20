@@ -8,6 +8,11 @@ async function registerUser(req, res) {
     const { fullname, email, password } = req.body;
 
     try {
+
+        if(!fullname || !email || !password){
+            return res.status(400).json({message: "All fields are required"})
+        }
+
         const ifUserAlreadyExists = await userModel.findOne({
             email
         })

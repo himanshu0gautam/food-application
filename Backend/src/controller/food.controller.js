@@ -105,6 +105,11 @@ async function saveFood(req, res) {
 
     const user = req.user;
 
+    if (!foodId) {
+        return res.status(400).json({ message: "foodId is required" });
+    }
+
+
     const isAlreadySaved = await saveModel.findOne({
         user: user._id,
         food: foodId
@@ -129,6 +134,14 @@ async function saveFood(req, res) {
     })
 }
 
-export { createFood, getFoodItems, likeFoodController, saveFood }
+async function getSaveFood(req, res) {
+    const user = req.user;
+
+    const save = await saveModel.find({ user: user._id}).populate("food");
+
+    res.status(200).json({ message: "Save food sucessfully", save})
+}
+
+export { createFood, getFoodItems, likeFoodController, saveFood, getSaveFood }
 
 // add some functionality like DAOfile and express validation
