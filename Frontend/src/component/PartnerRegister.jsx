@@ -8,7 +8,9 @@ const PartnerRegister = () => {
     const [formData, setFormData] = React.useState({
         fullname: "",
         email: "",
-        password: ""
+        password: "",
+        BusinessName: "",
+        shopDetails: "",
     });
 
     const handlechange = (e) => {
@@ -24,7 +26,7 @@ const PartnerRegister = () => {
             data.append("email", formData.email);
             data.append("password", formData.password);
             data.append("BusinessName", formData.BusinessName);
-            data.append("ShopDetils", formData.ShopDetils);
+            data.append("shopDetails", formData.shopDetails);
 
             await axios.post("http://localhost:3000/api/auth/food-partner/register", data, {
                 headers: { "Content-Type": "application/json" },
@@ -32,7 +34,7 @@ const PartnerRegister = () => {
             });
 
             // reset form after successful submission
-            setFormData({ fullname: "", email: "", password: "" });
+            setFormData({ fullname: "", email: "", password: "", BusinessName: "", shopDetails: ""});
         } catch (error) {
             console.error('Registration error:', error);
         }
@@ -50,6 +52,8 @@ const PartnerRegister = () => {
                         <input type="text" placeholder="Partner Name" className={styles.input} name="fullname" value={formData.fullname} onChange={handlechange} />
                         <input type="email" placeholder="Email" className={styles.input} name="email" value={formData.email} onChange={handlechange} />
                         <input type="password" placeholder="Password" className={styles.input} name="password" value={formData.password} onChange={handlechange} />
+                        <input type="text" placeholder="Business Name" className={styles.input} name="BusinessName" value={formData.BusinessName} onChange={handlechange} />
+                        <input type="text" placeholder="Shop details" className={styles.input} name="shopDetails" value={formData.shopDetails} onChange={handlechange} />
                         <button type="submit" className={styles.button}>Register</button>
                     </form>
                     <p className={styles.link}>

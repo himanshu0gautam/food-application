@@ -4,12 +4,20 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const CreateFood = () => {
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
   const [files, setFiles] = useState([])
   const inputRef = useRef(null)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState(null)
+  const [formdata, setformdata] = useState({
+    foodname: "",
+    description: "",
+    category: "",
+    typeOfFood: "",
+    preprationTime: "",
+    foodprice: "",
+    foodpriceHalf: "",
+    calories: ""
+  })
 
 
   const navigate = useNavigate();
@@ -38,8 +46,15 @@ const CreateFood = () => {
 
     try {
       const form = new FormData()
-      form.append('foodname', name)
-      form.append('description', description)
+      form.append('foodname', formdata.foodname)
+      form.append('description', formdata.description)
+      form.append('category', formdata.category)
+      form.append('typeOfFood', formdata.typeOfFood)
+      form.append('preprationTime', formdata.preprationTime)
+      form.append('foodprice', formdata.foodprice)
+      form.append('foodpriceHalf', formdata.foodpriceHalf)
+      form.append('calories', formdata.calories)
+
       // append first video file as main; if multiple, append with same field name
       files.forEach((f, i) => form.append('file', f))
 
@@ -47,13 +62,12 @@ const CreateFood = () => {
         withCredentials: true,
         headers: { 'Content-Type': 'multipart/form-data' }
       })
-      
+
       navigate("/home")
 
       console.log('upload response', res.data)
       // reset
-      setName('')
-      setDescription('')
+      setformdata('')
       setFiles([])
       if (inputRef.current) inputRef.current.value = null
     } catch (err) {
@@ -70,13 +84,67 @@ const CreateFood = () => {
       {error && <div className={styles.error}>{error}</div>}
 
       <label className={styles.field}>
-        <span className={styles.label}>Name</span>
-        <input value={name} onChange={e => setName(e.target.value)} required />
+        <span className={styles.label}>Food Name</span>
+        <input value={formdata.foodname} onChange={e => setformdata({
+          ...formdata, foodname: e.target.value 
+        })} required />
+      </label>
+
+      <label className={styles.field}>
+        <span className={styles.label}>Category</span>
+        <input value={formdata.category}
+          onChange={e => setformdata({
+            ...formdata, // Spread existing state
+            category: e.target.value // Update specific field
+          })} required />
+      </label>
+
+      <label className={styles.field}>
+        <span className={styles.label}>Type of Food</span>
+        <input value={formdata.typeOfFood} onChange={e => setformdata({
+          ...formdata, // Spread existing state
+          typeOfFood: e.target.value // Update specific field
+        })} required />
+      </label>
+
+      <label className={styles.field}>
+        <span className={styles.label}>Prepration Time</span>
+        <input value={formdata.preprationTime} onChange={e => setformdata({
+          ...formdata, // Spread existing state
+          preprationTime: e.target.value // Update specific field
+        })} required />
+      </label>
+
+      <label className={styles.field}>
+        <span className={styles.label}>Food Price</span>
+        <input value={formdata.foodprice} onChange={e => setformdata({
+          ...formdata, // Spread existing state
+          foodprice: e.target.value // Update specific field
+        })} required />
+      </label>
+
+      <label className={styles.field}>
+        <span className={styles.label}>Food Half Price</span>
+        <input value={formdata.foodpriceHalf} onChange={e => setformdata({
+          ...formdata, // Spread existing state
+          foodpriceHalf: e.target.value // Update specific field
+        })} required />
+      </label>
+
+      <label className={styles.field}>
+        <span className={styles.label}>calories</span>
+        <input value={formdata.calories} onChange={e => setformdata({
+          ...formdata, // Spread existing state
+          calories: e.target.value // Update specific field
+        })} required />
       </label>
 
       <label className={styles.field}>
         <span className={styles.label}>Description</span>
-        <textarea value={description} onChange={e => setDescription(e.target.value)} rows={4} />
+        <textarea value={formdata.description} onChange={e => setformdata({
+          ...formdata, // Spread existing state
+          description: e.target.value // Update specific field
+        })} rows={4} />
       </label>
 
       <label className={styles.field}>

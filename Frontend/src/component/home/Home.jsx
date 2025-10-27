@@ -3,8 +3,10 @@ import styles from './Home.module.css'
 import axios from 'axios'
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { RxDoubleArrowUp } from "react-icons/rx";
+import { PiShareFatThin } from "react-icons/pi";
 import { FaRegComment } from "react-icons/fa";
 import { FiBookmark } from "react-icons/fi";
+import { FaBookmark } from "react-icons/fa";
 import { IoSaveOutline } from "react-icons/io5";
 import { IoHomeOutline } from "react-icons/io5";
 import { BsCart3 } from "react-icons/bs";
@@ -13,7 +15,8 @@ import { useNavigate, Link } from 'react-router-dom'
 
 
 const Home = ({ save }) => {
-  const [saved, setSaved] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [videos, setVideos] = useState([])
   const containerRef = useRef(null)
   const videoRefs = useRef(new Map())
@@ -36,22 +39,6 @@ const Home = ({ save }) => {
     const next = Math.max(1, current - 1)
     return { ...prev, [id]: next }
   })
-
-  // const addToCart = async (item) => {
-  //   try {
-  //     await axios.post("http://localhost:3000/api/cart/add", {
-  //       foodId: item._id,
-  //       quantity: getQty(item._id)
-  //     }, { withCredentials: true })
-  //     console.log('Added to cart', item._id)
-  //   } catch (err) {
-  //     console.error('Add to cart error:', err.response?.data || err.message)
-  //   }
-  // }
-
-  // const buyNow = (item) => {
-  //   navigate('/buy', { state: { item, quantity: getQty(item._id) } })
-  // }
 
   useEffect(() => {
     let rafId = null
@@ -194,9 +181,29 @@ const Home = ({ save }) => {
     }
   };
 
-  const handleSave = async () => {
+  const handleSaveFood = async (foodId) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/api/food/save",
+        { foodId },
+        { withCredentials: true }
+      );
+      console.log(res.data);
 
-  }
+      // message = "food saved" OR "food unsaved"
+      const { message } = res.data;
+
+      setVideos((prevVideos) =>
+        prevVideos.map((v) =>
+          v._id === foodId
+            ? { ...v, saved: message === "food saved" }
+            : v
+        )
+      );
+    } catch (err) {
+      console.error(err.response?.data || err.message);
+    }
+  };
 
 
   // const saveVideo =  async (save) => {
@@ -218,73 +225,6 @@ const Home = ({ save }) => {
 
 
   return (
-    // <div className={styles.reel} ref={containerRef}>
-    //   {videos.map(v => (
-    //     <section data-id={v._id} className={styles.item} key={v._id} ref={el => el && videoRefs.current.set(v._id, el)}>
-    //       <video
-    //         className={styles.video}
-    //         src={v.foodvideo}
-    //         muted
-    //         playsInline
-    //         loop
-    //         preload="metadata"
-    //         autoPlay
-    //       />
-
-    //       <div className={styles.overlay} aria-hidden>
-    //         <div className={styles.meta}>
-    //           <div className={styles.description}>{v.description}</div>
-    //           <Link to={"/partner-profile"}>
-    //             <button
-    //               className={styles.visitBtn}
-    //             >
-    //               Visit Store
-    //             </button>
-    //           </Link>
-    //         </div>
-    //       </div>
-    //     </section>
-    //   ))}
-
-    //   <div className={styles.actions} aria-hidden>
-    //     {videos.map(v => (
-    //       <div key={v._id} className={styles.actionColumn}>
-    //         <div className={styles.actionItem} onClick={() => likefood(v)}>
-    //           <span className={styles.icon}>
-    //            {v.userLike ? <FaHeart color="red" /> : <FaRegHeart />}</span>
-    //           <span className={styles.count}>{v.likeCount || 0}</span>
-    //         </div>
-    //         <div className={styles.actionItem} onClick={() => openComments(v)}>
-    //           <span className={styles.icon}><FaRegComment /></span>
-    //           <span className={styles.count}>{v.commentCount || 0}</span>
-    //         </div>
-    //         <div className={styles.actionItem} onClick={() => saveVideo(v)}>
-    //           <span className={styles.icon}><FiBookmark color={v.saved ? 'gold' : undefined} /></span>
-    //           <span className={styles.count}>{v.saveCount || 0}</span>
-    //         </div>
-    //         <div className={styles.actionItem}>
-    //           <span className={styles.icon}><BsCart3 /></span>
-    //           <span className={styles.count}>{v.cartCount || '-'}</span>
-    //         </div>
-    //       </div>
-    //     ))}
-    //   </div>
-
-    //   {/* Bottom navigation bar */}
-    //   <nav className={styles.bottomNav} aria-label="bottom navigation">
-    //     <button className={styles.navButton} aria-label="record"></button>
-    //     <Link to="/home" className={styles.navLink}>
-    //       <div className={styles.navItem}><IoHomeOutline /><div className={styles.navLabel}>Home</div></div>
-    //     </Link>
-    //     <Link to="/save" className={styles.navLink}>
-    //       <div className={styles.navItem}><BsSave /><div className={styles.navLabel}>Save</div></div>
-    //     </Link>
-    //     <Link to="/buy" className={styles.navLink}>
-    //       <div className={styles.buyNow}>→<div className={styles.navLabel}>Buy Now</div></div>
-    //     </Link>
-    //   </nav>
-    // </div>
-
 
     <div className={styles.reel} ref={containerRef}>
       {videos.map(v => (
@@ -337,7 +277,8 @@ const Home = ({ save }) => {
                 <h2>Product Details</h2>
                 <div className={styles.description}>{v.description}</div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, width: '100%' }}>
+                {/* Add to cart */}
+                {/* <div style={{ display: 'flex', alignItems: 'center', gap: 12, width: '100%' }}>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
 
                     <div style={{ display: 'flex', gap: 8 }}>
@@ -380,7 +321,7 @@ const Home = ({ save }) => {
                       </button>
                     </div>
                   </div>
-                </div>
+                </div> */}
 
 
               </div>
@@ -410,16 +351,18 @@ const Home = ({ save }) => {
               <div className={styles.actionItem}>
                 <span className={styles.icon}>
                   <FiBookmark color={v.saved ? "gold" : undefined} />
-                  <button onClick={handleSave}>
-                    {/* {saved ? <FiBookmark color="blue" /> : <FaRegBookmark />} */}
+                  <button
+                    onChange={handleSaveFood}
+                    disabled={loading}>
+                    {/* {loading ? "Processing..." : isSaved ? "Unsave" : "Save"} */}
                   </button>
                 </span>
                 <span className={styles.count}>{v.saveCount || 0}</span>
               </div>
 
-              {/* Cart */}
+              {/* share */}
               <div className={styles.actionItem}>
-                <span className={styles.icon}><BsCart3 /></span>
+                <span className={styles.icon}><PiShareFatThin /></span>
                 <span className={styles.count}>{v.cartCount || "-"}</span>
               </div>
 
@@ -429,12 +372,15 @@ const Home = ({ save }) => {
 
 
           <nav className={styles.bottomNav} aria-label="bottom navigation">
-            <button className={styles.navButton} aria-label="record"></button>
+            {/* <button className={styles.navButton} aria-label="record"></button> */}
             <Link to="/home" className={styles.navLink}>
               <div className={styles.navItem}><div className={styles.navLabel}><IoHomeOutline />Home</div></div>
             </Link>
             <Link to="/save" className={styles.navLink}>
               <div className={styles.navItem}><div className={styles.navLabel}><IoSaveOutline />Save</div></div>
+            </Link>
+            <Link to="/cart" className={styles.navLink}>
+              <div className={styles.navItem}><div className={styles.navLabel}><BsCart3 />Cart</div></div>
             </Link>
             <Link to="/buy" className={styles.navLink}>
               <div className={styles.navLabel}>Buy Now</div>

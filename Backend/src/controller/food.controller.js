@@ -14,7 +14,8 @@ async function createFood(req, res) {
 
         // multer may provide file as req.file (single) or req.files (array) depending on middleware
         const file = req.file || (Array.isArray(req.files) && req.files[0]);
-        if (!file) return res.status(400).json({ message: 'No file uploaded' });
+        if (!file)
+            return res.status(400).json({ message: 'No file uploaded' });
 
         const foodUploadResult = await cloudinary.uploader.upload(file.path, {
             folder: "foodModel",
@@ -25,7 +26,13 @@ async function createFood(req, res) {
             foodname: req.body.foodname,
             description: req.body.description,
             foodvideo: foodUploadResult.secure_url,
-            foodPartner: req.foodPartner._id
+            foodPartner: req.foodPartner._id,
+            category: req.body.category,
+            typeOfFood: req.body.typeOfFood,
+            preprationTime: req.body.preprationTime,
+            foodprice: req.body.foodprice,
+            foodpriceHalf: req.body.foodpriceHalf,
+            calories: req.body.calories
         });
         await foodItem.save();
 
@@ -71,31 +78,31 @@ async function likeFoodController(req, res) {
         });
 
         const updated = await foodModel.findByIdAndUpdate(
-            foodId, { $inc: { likeCount: -1 }},
-             { new: true }
+            foodId, { $inc: { likeCount: -1 } },
+            { new: true }
         );
 
         return res.status(200).json({
-        like: false,
-        likeCount: updated.likeCount,
-        message: "Unliked successfully",
-      });
+            like: false,
+            likeCount: updated.likeCount,
+            message: "Unliked successfully",
+        });
     }
 
-     await likemodel.create({
+    await likemodel.create({
         user: user._id,
         food: foodId
     })
 
     const updated = await foodModel.findByIdAndUpdate(
-        foodId, { $inc: { likeCount: 1 }},
+        foodId, { $inc: { likeCount: 1 } },
         { new: true }
     );
 
-     return res.status(201).json({
-      like: true,
-      likeCount: updated.likeCount,
-      message: "Liked successfully",
+    return res.status(201).json({
+        like: true,
+        likeCount: updated.likeCount,
+        message: "Liked successfully",
     });
 }
 
@@ -108,7 +115,6 @@ async function saveFood(req, res) {
     if (!foodId) {
         return res.status(400).json({ message: "foodId is required" });
     }
-
 
     const isAlreadySaved = await saveModel.findOne({
         user: user._id,
@@ -137,9 +143,9 @@ async function saveFood(req, res) {
 async function getSaveFood(req, res) {
     const user = req.user;
 
-    const save = await saveModel.find({ user: user._id}).populate("food");
+    const save = await saveModel.find({ user: user._id }).populate("food");
 
-    res.status(200).json({ message: "Save food sucessfully", save})
+    res.status(200).json({ message: "Save food sucessfully", save })
 }
 
 export { createFood, getFoodItems, likeFoodController, saveFood, getSaveFood }

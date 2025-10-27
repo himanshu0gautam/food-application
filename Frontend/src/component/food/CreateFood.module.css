@@ -27,11 +27,11 @@
 }
 
 
-
 input,
 textarea {
     padding: 8px 10px;
     border: 1px solid #ddd;
+    background: #ffffff;
     border-radius: 6px;
      outline: none;
 }
