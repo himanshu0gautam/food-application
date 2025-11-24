@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const saveSchema = new mongoose.Schema({
-    User:{
+    user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },

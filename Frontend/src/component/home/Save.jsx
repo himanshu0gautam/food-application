@@ -7,9 +7,10 @@ const Save = () => {
   const [saved, setSaved] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/food/saved', { withCredentials: true })
+    const res = axios.get('http://localhost:3000/api/food/saveFood', { withCredentials: true })
       .then(res => setSaved(res.data.saved || []))
       .catch(err => console.error('Failed to fetch saved videos', err))
+
   }, [])
 
   return (

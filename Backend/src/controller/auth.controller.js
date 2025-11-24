@@ -3,14 +3,15 @@ import foodPartnerModel from "../model/foodpartner.model.js";
 import foodModel from "../model/food.model.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import client from "../db/Redis.js";
 
 async function registerUser(req, res) {
     const { fullname, email, password } = req.body;
 
     try {
 
-        if(!fullname || !email || !password){
-            return res.status(400).json({message: "All fields are required"})
+        if (!fullname || !email || !password) {
+            return res.status(400).json({ message: "All fields are required" })
         }
 
         const ifUserAlreadyExists = await userModel.findOne({
@@ -70,7 +71,13 @@ async function loginUser(req, res) {
         id: user._id,
     }, process.env.JWT_SECRET)
 
+    await client.set(`auth_${user._id}`, token, "EX", 1296000);
+
+    const redisToken = await client.get(`auth_${user._id}`);
+    console.log("Token stored in Redis =>", redisToken);
+
     res.cookie("token", token)
+
     res.status(200).json({
         message: "user login in successfully",
         user: {
@@ -200,12 +207,12 @@ async function foodPartnerProfile(req, res) {
         const foodItemsByFoodPartner = await foodModel.find({ foodPartner: decode.id })
 
         if (!partner) {
-            return res.status(404). json({ message: "Partner not found" });
+            return res.status(404).json({ message: "Partner not found" });
         }
 
         res.status(200).json({
             message: "Profile fetched successfully",
-            partner:{
+            partner: {
                 ...partner.toObject(),
                 foodItems: foodItemsByFoodPartner
             }

@@ -182,6 +182,7 @@ const Home = ({ save }) => {
   };
 
   const handleSaveFood = async (foodId) => {
+    setLoading(true)
     try {
       const res = await axios.post(
         "http://localhost:3000/api/food/save",
@@ -196,12 +197,18 @@ const Home = ({ save }) => {
       setVideos((prevVideos) =>
         prevVideos.map((v) =>
           v._id === foodId
-            ? { ...v, saved: message === "food saved" }
+            ? { ...v, saved: message === "food saved",
+              saveCount: v.saved
+              ? v.saveCount - 1
+              : v.saveCount + 1
+             }
             : v
         )
       );
     } catch (err) {
       console.error(err.response?.data || err.message);
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -352,7 +359,7 @@ const Home = ({ save }) => {
                 <span className={styles.icon}>
                   <FiBookmark color={v.saved ? "gold" : undefined} />
                   <button
-                    onChange={handleSaveFood}
+                    onClick={() => handleSaveFood(v._id)}
                     disabled={loading}>
                     {/* {loading ? "Processing..." : isSaved ? "Unsave" : "Save"} */}
                   </button>

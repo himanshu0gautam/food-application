@@ -108,22 +108,28 @@ async function likeFoodController(req, res) {
 
 // video save controller
 async function saveFood(req, res) {
-    const { foodId } = req.body;
+    console.log("hit savefood api");
 
-    const user = req.user;
+    const { foodId } = req.body;
+    console.log(foodId);
+
+
+    const userId = req.user._id;
+
+    console.log(userId);
 
     if (!foodId) {
         return res.status(400).json({ message: "foodId is required" });
     }
 
     const isAlreadySaved = await saveModel.findOne({
-        user: user._id,
+        user: userId,
         food: foodId
     })
 
     if (isAlreadySaved) {
         await saveModel.deleteOne({
-            user: user._id,
+            user: userId,
             food: foodId
         })
         return res.status(200).json({
@@ -132,7 +138,7 @@ async function saveFood(req, res) {
     }
 
     const save = await saveModel.create({
-        user: user._id,
+        user: userId,
         food: foodId
     })
     res.status(201).json({
@@ -145,7 +151,7 @@ async function getSaveFood(req, res) {
 
     const save = await saveModel.find({ user: user._id }).populate("food");
 
-    res.status(200).json({ message: "Save food sucessfully", save })
+    res.status(200).json({ message: "All Save food sucessfully", save })
 }
 
 export { createFood, getFoodItems, likeFoodController, saveFood, getSaveFood }

@@ -2,6 +2,7 @@
 import dotenv from "dotenv"
 import connetDB from "./src/db/db.js"
 import { app } from "./src/app.js";
+import client from "./src/db/Redis.js"
 
 dotenv.config({
     path: './.env'
