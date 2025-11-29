@@ -4,7 +4,6 @@ import axios from 'axios'
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { RxDoubleArrowUp } from "react-icons/rx";
 import { PiShareFatThin } from "react-icons/pi";
-import { FaRegComment } from "react-icons/fa";
 import { FiBookmark } from "react-icons/fi";
 import { FaBookmark } from "react-icons/fa";
 import { IoSaveOutline } from "react-icons/io5";
@@ -12,19 +11,21 @@ import { IoHomeOutline } from "react-icons/io5";
 import { BsCart3 } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 import { useNavigate, Link } from 'react-router-dom'
+import Comment from '../home/Comment'
+import { FaRegComment } from "react-icons/fa";
 
 
-const Home = ({ save }) => {
+const Home = ({ save, v }) => {
   const [isSaved, setIsSaved] = useState(false);
   const [loading, setLoading] = useState(false);
   const [videos, setVideos] = useState([])
   const containerRef = useRef(null)
   const videoRefs = useRef(new Map())
-  const [isopen, setisopen] = useState(true);
+  const [isopenSwipe, setisopenSwipe] = useState(true);
   const [isdetails, setisdetails] = useState(false);
 
   const swipeActionButton = () => {
-    setisopen(false);
+    setisopenSwipe(false);
     setisdetails(true);
   }
 
@@ -156,7 +157,7 @@ const Home = ({ save }) => {
   useEffect(() => {
     axios.get("http://localhost:3000/api/food/upload", { withCredentials: true })
       .then(res => {
-        console.log(res.data);
+        console.log("frontend food successful", res.data);
 
         setVideos(res.data.foodItems)
       })
@@ -197,38 +198,34 @@ const Home = ({ save }) => {
       setVideos((prevVideos) =>
         prevVideos.map((v) =>
           v._id === foodId
-            ? { ...v, saved: message === "food saved",
+            ? {
+              ...v, saved: message === "food saved",
               saveCount: v.saved
-              ? v.saveCount - 1
-              : v.saveCount + 1
-             }
+                ? v.saveCount - 1
+                : v.saveCount + 1
+            }
             : v
         )
       );
     } catch (err) {
       console.error(err.response?.data || err.message);
-    } finally{
+    } finally {
       setLoading(false)
     }
   };
 
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const handleComment = () => {
+    setIsOverlayOpen(true);
+    console.log("Overlay open karne ka request bheji gayi", isOverlayOpen);
+    if (isOverlayOpen === false) {
+      setisopenSwipe(false);
+    }
+  }
 
-  // const saveVideo =  async (save) => {
-  //   try {
-
-  //     const res = await axios.get("http://localhost:3000/api/food/save", {
-  //       foodId: food._id,
-  //     }, { withCredentials: true });
-
-  //   const { save , saveCount } = res.data;
-
-  //   setVideos(prev => prev.map(s => s._id === save._id ? { ...s, saveCount, saveCount: save } : s
-  //   ))
-
-  //   } catch (error) {
-  //      console.error(error.response?.data || error.message);
-  //   }
-  // }
+  const handleCloseOverlay = () => {
+    setIsOverlayOpen(false);
+  };
 
 
   return (
@@ -259,7 +256,7 @@ const Home = ({ save }) => {
           </div> */}
 
           {/* swipe btn */}
-          {isopen && (
+          {isopenSwipe && (
             <div className={styles.overlaybtn}>
               <div className={styles.metabtn}>
                 {/* <div className={styles.swipebtn}><span onClick={() => { setisopen(false) }}><RxDoubleArrowUp /></span> Swipe up for details & Order</div> */}
@@ -277,7 +274,7 @@ const Home = ({ save }) => {
 
                 <button
                   style={{ alignItems: "flex-end" }}
-                  onClick={() => { setisdetails(false); setisopen(true) }}>
+                  onClick={() => { setisdetails(false); setisopenSwipe(true) }}>
                   <MdCancel />
                 </button>
 
@@ -349,9 +346,17 @@ const Home = ({ save }) => {
               </div>
 
               {/* Comment */}
-              <div className={styles.actionItem} onClick={() => openComments(v)}>
-                <span className={styles.icon}><FaRegComment /></span>
-                <span className={styles.count}>{v.commentCount || 0}</span>
+              <div className={styles.commentContainer}>
+                <div className={styles.actionItem} onClick={() => handleComment()}>
+                  <span className={styles.icon}><FaRegComment /></span>
+                  {/* <span className={styles.icon}><Comment /></span> */}
+                  <span className={styles.count}>{v.commentCount || 0}</span>
+                </div>
+                <Comment
+                  isOpen={isOverlayOpen}
+                  onClose={handleCloseOverlay}
+                  itemData={v}
+                />
               </div>
 
               {/* Save */}
@@ -370,7 +375,7 @@ const Home = ({ save }) => {
               {/* share */}
               <div className={styles.actionItem}>
                 <span className={styles.icon}><PiShareFatThin /></span>
-                <span className={styles.count}>{v.cartCount || "-"}</span>
+                <span className={styles.count}>{v.cartCount || "0"}</span>
               </div>
 
             </div>

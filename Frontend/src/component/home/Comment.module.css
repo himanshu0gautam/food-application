@@ -1,0 +1,19 @@
+.commentOverlay{
+    right: 0;
+    position: fixed;
+    bottom: 67px;
+    /* background-color: red; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 40;
+    height: 60vh;
+}
+
+.commentModal{
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    width: 100%;
+}

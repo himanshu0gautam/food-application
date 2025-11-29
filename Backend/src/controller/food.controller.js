@@ -1,3 +1,4 @@
+import commmentModel from "../model/comment.model.js";
 import foodModel from "../model/food.model.js";
 import likemodel from "../model/like.model.js";
 import saveModel from "../model/save.model.js";
@@ -49,7 +50,6 @@ async function createFood(req, res) {
     }
 
 }
-
 
 async function getFoodItems(req, res) {
     const foodItems = await foodModel.find({})
@@ -108,15 +108,9 @@ async function likeFoodController(req, res) {
 
 // video save controller
 async function saveFood(req, res) {
-    console.log("hit savefood api");
 
     const { foodId } = req.body;
-    console.log(foodId);
-
-
     const userId = req.user._id;
-
-    console.log(userId);
 
     if (!foodId) {
         return res.status(400).json({ message: "foodId is required" });
@@ -154,6 +148,25 @@ async function getSaveFood(req, res) {
     res.status(200).json({ message: "All Save food sucessfully", save })
 }
 
-export { createFood, getFoodItems, likeFoodController, saveFood, getSaveFood }
+// comment controller
+async function FoodCommnet(req, res) {
+    const { foodId } = req.body;
+    const userId = req.user._id;
+
+    if(!foodId){
+        return res.status(400).json({ message: "foodId is required"})
+    }
+
+    const comment = await commmentModel.create({
+        food: foodId,
+        user: userId,
+        userComment: comment
+    })
+    res.status(201).json({
+        message: "comment add", comment
+    })
+}
+
+export { createFood, getFoodItems, likeFoodController, saveFood, getSaveFood, FoodCommnet }
 
 // add some functionality like DAOfile and express validation
