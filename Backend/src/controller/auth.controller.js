@@ -118,7 +118,8 @@ async function registerPartner(req, res) {
             email,
             password: hashPassword,
             shopDetails,
-            BusinessName
+            BusinessName,
+            status: "pending"
         });
 
         const token = jwt.sign({ id: foodpartner._id }, process.env.JWT_SECRET);
@@ -129,13 +130,14 @@ async function registerPartner(req, res) {
             sameSite: "lax",
         })
         res.status(200).json({
-            message: "Partner is login successfully",
+            message: "Partner Registration successfully. Approval pending !",
             foodPartner: {
                 _id: foodpartner._id,
                 email: foodpartner.email,
                 fullname: foodpartner.fullname,
                 shopDetails: foodpartner.shopDetails,
-                BusinessName: foodpartner.BusinessName
+                BusinessName: foodpartner.BusinessName,
+                status: foodpartner.status
             }
         });
 
@@ -156,7 +158,13 @@ async function loginfoodPartner(req, res) {
             .json({ message: "invalid email and password" })
     }
 
-    const isPasswordValid = bcrypt.compare(password, foodPartner.password)
+    if (foodPartner.status !== "approved") {
+        return res.status(403).json({
+            message: "Your account is not approved yet."
+        });
+    }    
+
+    const isPasswordValid = await bcrypt.compare(password, foodPartner.password)
 
     if (!isPasswordValid) {
         return res.status(400).json({

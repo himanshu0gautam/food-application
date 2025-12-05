@@ -23,6 +23,11 @@ const foodPartnerSchema = new mongoose.Schema({
     shopDetails: {
         type: String,
         required: true,
+    },
+    status: {
+        type: String,
+        enum: ["pending", "approved", "rejected"],
+        default: "pending",
     }
 }, {timestamps: true})
 

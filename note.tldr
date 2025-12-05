@@ -80,10 +80,706 @@
 		{
 			"id": "pointer:pointer",
 			"typeName": "pointer",
-			"x": 3037.3124945270247,
-			"y": -286.442615059858,
-			"lastActivityTimestamp": 1763315507749,
+			"x": 2870.6214348708595,
+			"y": 16.06573109715896,
+			"lastActivityTimestamp": 1764679914623,
 			"meta": {}
+		},
+		{
+			"x": -2259.3539609431455,
+			"y": -539.9695706503467,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:mPANTn3_PQHey3F6gZ41I",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 117.7874984741211,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 4.652058282920647,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Rabit MQ"
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:page",
+			"index": "aRdN5vlV",
+			"typeName": "shape"
+		},
+		{
+			"x": -2262.8630285149347,
+			"y": -362.22865057264323,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:5OwYxYBZ3bxH2Nim1kW9k",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 2122.91259765625,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 1
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "What is RabbitMQ?"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "RabbitMQ"
+								},
+								{
+									"type": "text",
+									"text": " ek "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "Message Broker"
+								},
+								{
+									"type": "text",
+									"text": " ya "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "Queue System"
+								},
+								{
+									"type": "text",
+									"text": " hai."
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Simple words mein:"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "RabbitMQ ek “post office” ki tarah hota hai jo ek service se message leta hai aur us message ko doosri service ko deliver karta hai — safely, reliably aur asynchronously."
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Isko hum "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "backend microservices"
+								},
+								{
+									"type": "text",
+									"text": ", "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "payment"
+								},
+								{
+									"type": "text",
+									"text": ", "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "email"
+								},
+								{
+									"type": "text",
+									"text": ", "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "notifications"
+								},
+								{
+									"type": "text",
+									"text": ", "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "orders"
+								},
+								{
+									"type": "text",
+									"text": ", "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "background tasks"
+								},
+								{
+									"type": "text",
+									"text": " ke liye bahut use karte hain."
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 1
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "💡 Why use RabbitMQ? (RabbitMQ kyu use karte hain?)"
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 2
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "⭐ 1. "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "Decouple Services"
+								},
+								{
+									"type": "text",
+									"text": " (Services ko alag-alag rakhna)"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Suppose:"
+								}
+							]
+						},
+						{
+							"type": "bulletList",
+							"content": [
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "Order place hota hai"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "Aapko email send karna"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "SMS send karna"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "Invoice generate karna"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "Stock update karna"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Agar ye sab ek hi request mein karoge to:"
+								}
+							]
+						},
+						{
+							"type": "bulletList",
+							"content": [
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "API slow ho jayegi"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "Server overload ho jayega"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "RabbitMQ karega:"
+								},
+								{
+									"type": "hardBreak"
+								},
+								{
+									"type": "text",
+									"text": "➡️ API sirf ek “message” queue mein daal degi"
+								},
+								{
+									"type": "hardBreak"
+								},
+								{
+									"type": "text",
+									"text": "➡️ Background workers ye kaam handle kar lenge"
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 2
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "⭐ 2. "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "Asynchronous Processing"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Matlab — kaam background mein hoga, user ko wait nahi karna padega."
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Example:"
+								}
+							]
+						},
+						{
+							"type": "bulletList",
+							"content": [
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "User → “Order placed” dikha diya"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "Background mein invoice, email, SMS chal raha hai"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "User ko fast response mil gaya"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 2
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "⭐ 3. "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "Reliable Delivery"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "RabbitMQ ensure karta hai ki:"
+								}
+							]
+						},
+						{
+							"type": "bulletList",
+							"content": [
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "Message lost na ho"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "Server crash ho jaye tab bhi message safe rahe"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"text": "Duplicate message handle ho jaye"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 2
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "⭐ 4. "
+								},
+								{
+									"type": "text",
+									"marks": [
+										{
+											"type": "bold"
+										}
+									],
+									"text": "High Traffic Handling"
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Agar 10,000 log ek saath order place karte hain →"
+								},
+								{
+									"type": "hardBreak"
+								},
+								{
+									"type": "text",
+									"text": "RabbitMQ queue bana deta hai aur tasks ko ek-ek karke safely process karta hai."
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:page",
+			"index": "aSUeUU2S",
+			"typeName": "shape"
 		},
 		{
 			"x": 427.338907940261,
@@ -1161,9 +1857,9 @@
 			"typeName": "shape"
 		},
 		{
-			"x": 841.810908907267,
-			"y": 846.5396211881462,
-			"z": 0.22139022105681147,
+			"x": 511.56586974956724,
+			"y": 918.4387465444114,
+			"z": 0.2225778527299668,
 			"meta": {},
 			"id": "camera:page:page",
 			"typeName": "camera"
@@ -1217,6 +1913,45 @@
 			},
 			"parentId": "page:page",
 			"index": "aKFqaAMV",
+			"typeName": "shape"
+		},
+		{
+			"x": 145.19823977424517,
+			"y": -442.9249160281645,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:a7-pRqK30frB5fjzKkn8Q",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 320.87571296597406,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 4.652058282920647,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Redis"
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:page",
+			"index": "aTYb2UqG",
 			"typeName": "shape"
 		},
 		{
@@ -2949,7 +3684,7 @@
 			"selectedShapeIds": [
 				"shape:l1CHGxd0ZvtGKapbVA-WY"
 			],
-			"hoveredShapeId": "shape:l1CHGxd0ZvtGKapbVA-WY",
+			"hoveredShapeId": null,
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
 			"focusedGroupId": null,
@@ -3647,8 +4382,8 @@
 			"typeName": "binding"
 		},
 		{
-			"x": 2870.7920250288457,
-			"y": -528.8192707401597,
+			"x": 2674.905344991593,
+			"y": -453.3400492196803,
 			"rotation": 0,
 			"isLocked": false,
 			"opacity": 1,
@@ -8157,14 +8892,11 @@
 		{
 			"followingUserId": null,
 			"opacityForNextShape": 1,
-			"stylesForNextShape": {
-				"tldraw:geo": "rectangle",
-				"tldraw:color": "black"
-			},
+			"stylesForNextShape": {},
 			"brush": null,
 			"scribbles": [],
 			"cursor": {
-				"type": "default",
+				"type": "move",
 				"rotation": 0
 			},
 			"isFocusMode": false,
@@ -8175,7 +8907,7 @@
 				"x": 0,
 				"y": 0,
 				"w": 1318.4000244140625,
-				"h": 613.6000366210938
+				"h": 536
 			},
 			"insets": [
 				false,

@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import connetDB from "./src/db/db.js"
 import { app } from "./src/app.js";
 import client from "./src/db/Redis.js"
+import { sendApprovalMessage } from "./src/services/rabbitMQ.js"
 
 dotenv.config({
     path: './.env'
