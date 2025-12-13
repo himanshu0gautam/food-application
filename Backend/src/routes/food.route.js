@@ -1,6 +1,6 @@
 import dotenv from "dotenv"
 import express from "express"
-import { createFood, getFoodItems, getSaveFood, likeFoodController, saveFood, FoodCommnet } from "../controller/food.controller.js";
+import { createFood, getFoodItems, getSaveFood, likeFoodController, saveFood, FoodCommnet, ReplyComment, getAllComments } from "../controller/food.controller.js";
 import { authFoodPartnerMiddleware, authUserMiddleware, } from "../middleware/auth.middleware.js"
 
 dotenv.config();
@@ -24,6 +24,8 @@ router.post("/like", authUserMiddleware, likeFoodController)
 router.post("/save", authUserMiddleware, saveFood)
 router.get("/saveFood", authUserMiddleware, getSaveFood)
 // comment
-router.post("/user/comment",authUserMiddleware, FoodCommnet )
+router.post("/user/comment",authUserMiddleware, FoodCommnet)
+router.post("/user/replyComment/:commentId",authUserMiddleware, ReplyComment)
+router.get("/user/:postId", getAllComments)
 
 export default router;

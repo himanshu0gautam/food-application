@@ -80,9 +80,9 @@
 		{
 			"id": "pointer:pointer",
 			"typeName": "pointer",
-			"x": 2870.6214348708595,
-			"y": 16.06573109715896,
-			"lastActivityTimestamp": 1764679914623,
+			"x": -943.7052048715491,
+			"y": 1776.031449383558,
+			"lastActivityTimestamp": 1765512128527,
 			"meta": {}
 		},
 		{
@@ -779,6 +779,239 @@
 			},
 			"parentId": "page:page",
 			"index": "aSUeUU2S",
+			"typeName": "shape"
+		},
+		{
+			"x": -2262.7110323343954,
+			"y": 1608.833474358525,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:OGl7eatrVfsdvjFBYwV6i",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 2217.28759765625,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "heading",
+							"attrs": {
+								"dir": "auto",
+								"level": 3
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Key Characteristics"
+								}
+							]
+						},
+						{
+							"type": "bulletList",
+							"content": [
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Minimalist:"
+												},
+												{
+													"type": "text",
+													"text": " It uses very little boilerplate code. You define your store and actions in a single, clean function."
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Hook-based:"
+												},
+												{
+													"type": "text",
+													"text": " It is fully integrated with React Hooks. You consume state by calling a custom hook ("
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "code"
+														}
+													],
+													"text": "useStore"
+												},
+												{
+													"type": "text",
+													"text": ")."
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "No Context Provider Required:"
+												},
+												{
+													"type": "text",
+													"text": " Unlike Context or Redux, you don't need to wrap your entire application in a "
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "code"
+														}
+													],
+													"text": "<Provider />"
+												},
+												{
+													"type": "text",
+													"text": " component. You can call the store hook anywhere."
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Simple API:"
+												},
+												{
+													"type": "text",
+													"text": " It uses a straightforward "
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "code"
+														}
+													],
+													"text": "set"
+												},
+												{
+													"type": "text",
+													"text": " function to update the state, similar to "
+												},
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "code"
+														}
+													],
+													"text": "useState"
+												},
+												{
+													"type": "text",
+													"text": ", but it handles merging updates automatically."
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "listItem",
+									"content": [
+										{
+											"type": "paragraph",
+											"attrs": {
+												"dir": "auto"
+											},
+											"content": [
+												{
+													"type": "text",
+													"marks": [
+														{
+															"type": "bold"
+														}
+													],
+													"text": "Performance:"
+												},
+												{
+													"type": "text",
+													"text": " It uses a selector pattern to only re-render components that consume the specific piece of state they need, ensuring good performance"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							}
+						}
+					]
+				}
+			},
+			"parentId": "page:page",
+			"index": "aWGmwAWV",
 			"typeName": "shape"
 		},
 		{
@@ -1857,9 +2090,9 @@
 			"typeName": "shape"
 		},
 		{
-			"x": 511.56586974956724,
-			"y": 918.4387465444114,
-			"z": 0.2225778527299668,
+			"x": 4547.749473149803,
+			"y": 1035.3708381463066,
+			"z": 0.12918820398561445,
 			"meta": {},
 			"id": "camera:page:page",
 			"typeName": "camera"
@@ -3679,10 +3912,61 @@
 			"typeName": "shape"
 		},
 		{
+			"x": -2265.8074792368316,
+			"y": 1435.443077980086,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:sgRQ4itTkYYsKrPWjp53e",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 2854.420617705872,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 1.9556351160590741,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Zustand is a lightweight, fast, and scalable state management library for React. It's often favored for its simplicity "
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "and minimal boilerplate compared to other libraries like Redux or even the React Context API for complex scenarios."
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:page",
+			"index": "aVF8U2Hl",
+			"typeName": "shape"
+		},
+		{
 			"editingShapeId": null,
 			"croppingShapeId": null,
 			"selectedShapeIds": [
-				"shape:l1CHGxd0ZvtGKapbVA-WY"
+				"shape:OGl7eatrVfsdvjFBYwV6i"
 			],
 			"hoveredShapeId": null,
 			"erasingShapeIds": [],
@@ -8010,6 +8294,45 @@
 			"typeName": "shape"
 		},
 		{
+			"x": -2216.0065390178347,
+			"y": 1224.897503860443,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:sTPnJu5g0lqbSME38Yh5p",
+			"type": "text",
+			"props": {
+				"color": "black",
+				"size": "m",
+				"w": 473.69585595382773,
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 4.652058282920647,
+				"richText": {
+					"type": "doc",
+					"content": [
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "Zustand"
+								}
+							]
+						}
+					]
+				}
+			},
+			"parentId": "page:page",
+			"index": "aUNtdNLV",
+			"typeName": "shape"
+		},
+		{
 			"x": 395.0710123232208,
 			"y": 316.52137955831944,
 			"rotation": 0,
@@ -8907,7 +9230,7 @@
 				"x": 0,
 				"y": 0,
 				"w": 1318.4000244140625,
-				"h": 536
+				"h": 491.20001220703125
 			},
 			"insets": [
 				false,

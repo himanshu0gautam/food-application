@@ -1,19 +1,35 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
+
+const replySchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
+    replytext: {
+        type: String,
+        required: true
+    }
+}, { timestamps: true })
+
 
 const commentSchema = new mongoose.Schema({
 
-    food: {
+    foodId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "food"
     },
-    user: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        required: true
     },
-    comment: {
+    commentText: {
         type: String,
-        index: true
+        index: true,
+        required: true
     },
+    replies: [replySchema],
     commentLike: {
         type: Number,
         default: 0

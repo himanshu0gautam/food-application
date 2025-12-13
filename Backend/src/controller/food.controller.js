@@ -150,23 +150,80 @@ async function getSaveFood(req, res) {
 
 // comment controller
 async function FoodCommnet(req, res) {
-    const { foodId } = req.body;
-    const userId = req.user._id;
+console.log("comment api hit");
 
-    if(!foodId){
-        return res.status(400).json({ message: "foodId is required"})
+    try {
+        const { foodId, commentText } = req.body;
+        const userId = req.user._id;
+        console.log("userid",userId);   
+        console.log("foodId",foodId);
+         
+
+        if (!foodId) {
+            return res.status(400).json({ message: "foodId is required" })
+        }
+
+        const comment = await commmentModel.create({
+            foodId,
+            userId,
+            commentText
+        })
+        res.status(201).json({
+            success: true,
+            message: "comment add", comment
+        })
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
     }
-
-    const comment = await commmentModel.create({
-        food: foodId,
-        user: userId,
-        userComment: comment
-    })
-    res.status(201).json({
-        message: "comment add", comment
-    })
 }
 
-export { createFood, getFoodItems, likeFoodController, saveFood, getSaveFood, FoodCommnet }
+async function ReplyComment(req, res) {
+    try {
+
+        const { userId, text } = req.boby;
+        const { commentId } = req.params;
+
+        const updated = await commmentModel.findByIdAndUpdate(
+            commentId,
+            {
+                $push: {
+                    replies: { user: userId, text }
+                }
+            },
+            { new: true }
+        )
+
+        res.status(201).json({
+            success: true,
+            message: "Reply added successfully",
+            updated
+        })
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message })
+    }
+}
+
+async function getAllComments(req, res) {
+    try {
+
+        const comments = await commmentModel.find({ postId: req.params.postId })
+            .populate("user", "name profilePic")
+            .populate("replies.user", "name profilePic")
+            .sort({ createdAt: -1 });
+
+        res.status(200).json({
+            success: true,
+            message: "Comments fetched successfully",
+            comments
+        })
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+}
+
+export { createFood, getFoodItems, likeFoodController, saveFood, getSaveFood, FoodCommnet, ReplyComment, getAllComments }
 
 // add some functionality like DAOfile and express validation

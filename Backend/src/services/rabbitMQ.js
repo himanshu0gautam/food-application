@@ -1,32 +1,37 @@
-import amqp from 'amqplib/callback_api.js';
-// import dotenv from 'dotenv';
-
-// dotenv.config();
+import amqp from 'amqplib';
 
 console.log("-----------RabbitMQ URL:",process.env.RABBITMQ_URL);
 
 const queue = "sellerApprovalQueue";
 
 async function sendApprovalMessage(payload) {
-    const connection = await amqp.connect(process.env.RABBITMQ_URL);
-    const channel = await connection.createChannel();
-    
-    console.log("connected to RabbitMQ");
-    
-    // const message = "New seller registration approval needed";
-    await channel.assertQueue(queue, { durable: true});
+    try {
 
-    const msg = JSON.stringify(payload)
-    channel.sendToQueue(queue, Buffer.from(msg), {persistent: true });
-    console.log("message sent to queue:", msg);
+         if (!payload) {
+            throw new Error("Payload is required");
+        }
 
-    setTimeout(() => {
-        channel.close();
-        connection.close();
-    }, 1000);
-    
+        console.log(payload);
+
+        const connection = await amqp.connect(process.env.RABBITMQ_URL);
+        const channel = await connection.createChannel();
+        
+        console.log("✓ Connected to RabbitMQ");
+        
+        await channel.assertQueue(queue, { durable: true });
+
+        const msg = JSON.stringify(payload);
+        channel.sendToQueue(queue, Buffer.from(msg), { persistent: true });
+        console.log("✓ Message sent to queue:", msg);
+
+        setTimeout(() => {
+            channel.close();
+            connection.close();
+        }, 500);
+    } catch (error) {
+        console.error("✗ RabbitMQ mein error:", error);
+        throw error;
+    }
 }
-// console.log("-------------",sendApprovalMessage);
-
 
 export { sendApprovalMessage }

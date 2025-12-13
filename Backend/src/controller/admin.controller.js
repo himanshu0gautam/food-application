@@ -60,8 +60,8 @@ async function adminLogin(req, res) {
         })
     }
 
-    if (!name === "himanshu" && !password === "himanshu123") {
-        return res.status(200).json({
+    if (name !== "himanshu" || password !== "himanshu123") {
+        return res.status(403).json({
             message: "You are not Admin",
         });
     }
@@ -74,12 +74,12 @@ async function adminLogin(req, res) {
 }
 
 async function adminApprove(req, res) {
-    const { id } = req.body;
+    const { id } = req.params;
 
     try {
         const seller = await foodPartnerModel.findById(id);
 
-        if(!seller){
+        if (!seller) {
             return res.status(404).json({
                 message: "Seller not found"
             })
@@ -88,7 +88,20 @@ async function adminApprove(req, res) {
         seller.status = "approved";
         await seller.save();
 
-        await sendApprovalMessage(seller.email);
+        try {
+            await sendApprovalMessage({
+               email: seller.email,
+               sellerId: seller._id,
+               status: "approved" 
+            });
+            console.log("✓ Approval message queued for:", seller.email);
+        } catch (mqError) {
+            console.error("✗ RabbitMQ error:", mqError);
+            return res.status(500).json({
+                message: "Seller approved but email queue failed",
+                error: mqError.message
+            });
+        }
 
         res.json({
             message: "Food Partner approved successfully",
@@ -96,7 +109,7 @@ async function adminApprove(req, res) {
         })
         
     } catch (error) {
-        console.log("admin approved error:", error);
+        console.log("✗ Admin approve error:", error);
         res.status(500).json({
             message: "Internal server error"
         });

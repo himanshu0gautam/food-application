@@ -1,36 +1,45 @@
-import amqp from "amqplib/callback_api.js";
-import { sendApprovalEmail } from "../utils/emailer..js";
+import dotenv from "dotenv";
+dotenv.config({ path: "./.env" });
 
-const queue = "sellerApprovalQueueConsumer";
+import amqp from "amqplib";
+console.log("consumer loaded");
+import { sendApprovalEmail } from "../utils/emailer.js";
+console.log("emailer imported");
 
 
-async function startConsumer() {
-    const connection = await amqp.connect(process.env.RABBITMQ_URL);
-    const channel = await connection.createChannel();
+const queue = "sellerApprovalQueue";
 
-    await channel.assertQueue(queue, { durable: true });
+export async function startConsumer() {
+    try {
+        const connection = await amqp.connect(process.env.RABBITMQ_URL);
+        const channel = await connection.createChannel();
 
-    channel.prefetch(1);
+        await channel.assertQueue(queue, { durable: true });
 
-    console.log("waiting for messsage ...");
+        channel.prefetch(1);
 
-    channel.consume(queue, async (msg) => {
-        if(!msg) return;
-        try {
+        console.log("✓ Consumer waiting for messages on queue:", queue);
 
-            const payload = JSON.parse(msg.content.toString());
-            console.log("Received message:", payload);
+        channel.consume(queue, async (msg) => {
+            if (!msg) return;
+            try {
+                const payload = JSON.parse(msg.content.toString());
+                console.log("Received message:", payload);
 
-            await sendApprovalEmail(payload.email);
+                await sendApprovalEmail(payload.email);
 
-            channel.ack(msg);
-            
-        } catch (error) {
-            console.error("failed to process message", error)
-            channel.ack(msg);
-        }
+                channel.ack(msg);
+                console.log("✓ Message processed and acknowledged");
+            } catch (error) {
+                console.error("✗ Failed to process message:", error);
+                channel.nack(msg, false, true);
+            }
         }, { noAck: false });
+    } catch (error) {
+        console.error("✗ Consumer error:", error);
+        setTimeout(startConsumer, 5000);
+    }
 }
 
-startConsumer().catch(err => console.error("consumer error:", err));
+startConsumer();
 

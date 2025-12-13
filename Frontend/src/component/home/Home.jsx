@@ -15,7 +15,7 @@ import Comment from '../home/Comment'
 import { FaRegComment } from "react-icons/fa";
 
 
-const Home = ({ save, v }) => {
+const Home = ({ save, v, foodId }) => {
   const [isSaved, setIsSaved] = useState(false);
   const [loading, setLoading] = useState(false);
   const [videos, setVideos] = useState([])
@@ -272,14 +272,72 @@ const Home = ({ save, v }) => {
             <div className={styles.detailsModal}>
               <div className={styles.detailsModalContent}>
 
-                <button
-                  style={{ alignItems: "flex-end" }}
-                  onClick={() => { setisdetails(false); setisopenSwipe(true) }}>
-                  <MdCancel />
-                </button>
-
-                <h2>Product Details</h2>
+                {/* <h2>Product Details</h2>
                 <div className={styles.description}>{v.description}</div>
+                <div>{v.calories}</div> */}
+
+
+
+                {/* <div className={styles.card}> */}
+                                                    <button
+                    className={styles.detilsClodeBtn}
+                    onClick={() => { setisdetails(false); setisopenSwipe(true) }}>
+                    <MdCancel />
+                  </button>
+
+                {/* Top Section: Profile and Follow Button */}
+                <div className={styles.header}>
+                  <div className={styles.chefInfo}>
+                    {/* Chef Profile Image (Circular) */}
+                    <img src={"https://in.pinterest.com/pin/199565827236590753/"} alt={"himanshu"} className={styles.profileImage} />
+                    <div className={styles.textGroup}>
+                      {/* Chef Name and Verification */}
+                      <p className={styles.chefName}>himanshu <span className={styles.verified}>✔</span></p>
+                      {/* Chef Handle */}
+                      <p className={styles.chefHandle}>@himanshu</p>
+                    </div>
+                  </div>
+                  {/* Follow Button */}
+                  <button className={styles.followButton}>Follow</button>
+
+                </div>
+
+                {/* Recipe Title */}
+                <h1 className={styles.recipeTitle}>{v.foodname}</h1>
+
+                {/* Tags (Indian, Creamy) */}
+                <div className={styles.tagContainer}>
+                  <span className={styles.tag}>{v.typeOfFood}</span>
+                  <span className={styles.tag}>{v.category}</span>
+                </div>
+
+                {/* Stats (Prep Time, Servings) */}
+                <div className={styles.stats}>
+                  <span>{v.preprationTime}</span>
+                  <span className={styles.dot}>•</span>
+                  <span>Calories :{v.calories}</span>
+                </div>
+
+                {/* Rating (Star and Count) */}
+                <div className={styles.rating}>
+                  <span className={styles.star}>⭐</span>
+                  <span className={styles.ratingValue}>rating</span>
+                  <span className={styles.reviewCount}>review count</span>
+                </div>
+
+                {/* Action Buttons */}
+                <div className={styles.buttonContainer}>
+                  {/* Add to Cart Button */}
+                  <button className={styles.addToCartButton}>
+                    <span className={styles.cartIcon}>🛒</span> Add to Cart
+                  </button>
+                  {/* Order Now Button (Orange) */}
+                  <button className={styles.orderNowButton}>${v.foodprice}</button>
+                </div>
+
+
+                {/* </div> */}
+
 
                 {/* Add to cart */}
                 {/* <div style={{ display: 'flex', alignItems: 'center', gap: 12, width: '100%' }}>
@@ -327,7 +385,6 @@ const Home = ({ save, v }) => {
                   </div>
                 </div> */}
 
-
               </div>
             </div>
 
@@ -356,6 +413,7 @@ const Home = ({ save, v }) => {
                   isOpen={isOverlayOpen}
                   onClose={handleCloseOverlay}
                   itemData={v}
+                  foodId={v._id}
                 />
               </div>
 
