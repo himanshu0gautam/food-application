@@ -17,7 +17,8 @@ const commentSchema = new mongoose.Schema({
 
     foodId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "food"
+        ref: "food",
+        required: true
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,

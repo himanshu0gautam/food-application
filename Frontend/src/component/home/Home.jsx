@@ -6,13 +6,23 @@ import { RxDoubleArrowUp } from "react-icons/rx";
 import { PiShareFatThin } from "react-icons/pi";
 import { FiBookmark } from "react-icons/fi";
 import { FaBookmark } from "react-icons/fa";
-import { IoSaveOutline } from "react-icons/io5";
+import { VscSaveAll } from "react-icons/vsc";
 import { IoHomeOutline } from "react-icons/io5";
 import { BsCart3 } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 import { useNavigate, Link } from 'react-router-dom'
 import Comment from '../home/Comment'
 import { FaRegComment } from "react-icons/fa";
+import { RiAddLargeFill } from "react-icons/ri";
+// import { SiCarto } from "react-icons/si";
+// import { FaPiggyBank } from "react-icons/fa";
+// import { GiReceiveMoney } from "react-icons/gi";
+import { IoIosSearch } from "react-icons/io";
+// import { MdAttachMoney } from "react-icons/md";
+// import { LuMessageCircleMore } from "react-icons/lu";
+import { IoNotificationsOutline } from "react-icons/io5";
+// import { IoMdNotificationsOutline } from "react-icons/io";
+import { MdRestaurantMenu } from "react-icons/md";
 
 
 const Home = ({ save, v, foodId }) => {
@@ -215,7 +225,12 @@ const Home = ({ save, v, foodId }) => {
   };
 
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-  const handleComment = () => {
+  const [activeFoodId, setActiveFoodId] = useState(null);
+
+  const handleComment = (id) => {
+    // set the active food id from the clicked item and open the overlay
+    console.log("comment clicked for foodId", id);
+    setActiveFoodId(id);
     setIsOverlayOpen(true);
     console.log("Overlay open karne ka request bheji gayi", isOverlayOpen);
     if (isOverlayOpen === false) {
@@ -225,12 +240,23 @@ const Home = ({ save, v, foodId }) => {
 
   const handleCloseOverlay = () => {
     setIsOverlayOpen(false);
+    setActiveFoodId(null);
   };
 
 
   return (
 
     <div className={styles.reel} ref={containerRef}>
+
+        {/* <div
+          type="button"
+          className={styles.reelTopLeftBtn}
+          aria-label="reel-top-left-btn"
+        onClick={() => setisopenSwipe(prev => !prev)}
+        >
+          <MdRestaurantMenu />
+        </div> */}
+
       {videos.map(v => (
         <section
           data-id={v._id}
@@ -279,17 +305,17 @@ const Home = ({ save, v, foodId }) => {
 
 
                 {/* <div className={styles.card}> */}
-                                                    <button
-                    className={styles.detilsClodeBtn}
-                    onClick={() => { setisdetails(false); setisopenSwipe(true) }}>
-                    <MdCancel />
-                  </button>
+                <button
+                  className={styles.detilsClodeBtn}
+                  onClick={() => { setisdetails(false); setisopenSwipe(true) }}>
+                  <MdCancel />
+                </button>
 
                 {/* Top Section: Profile and Follow Button */}
                 <div className={styles.header}>
                   <div className={styles.chefInfo}>
                     {/* Chef Profile Image (Circular) */}
-                    <img src={"https://in.pinterest.com/pin/199565827236590753/"} alt={"himanshu"} className={styles.profileImage} />
+                    <img src={"https://media.gettyimages.com/id/2192202545/vector/avatar-profile-of-man-head-shape-flat-illustration.jpg?s=612x612&w=0&k=20&c=4B-EimX02cWXXZC_iPpQRiGkycmF6qtTWwzdD7o_XOo="} alt={"himanshu"} className={styles.profileImage} />
                     <div className={styles.textGroup}>
                       {/* Chef Name and Verification */}
                       <p className={styles.chefName}>himanshu <span className={styles.verified}>✔</span></p>
@@ -329,12 +355,12 @@ const Home = ({ save, v, foodId }) => {
                 <div className={styles.buttonContainer}>
                   {/* Add to Cart Button */}
                   <button className={styles.addToCartButton}>
-                    <span className={styles.cartIcon}>🛒</span> Add to Cart
+                    <span className={styles.cartIcon}>Add to Cart</span>
                   </button>
                   {/* Order Now Button (Orange) */}
                   <button className={styles.orderNowButton}>${v.foodprice}</button>
                 </div>
-
+                {/* 🛒 */}
 
                 {/* </div> */}
 
@@ -404,7 +430,7 @@ const Home = ({ save, v, foodId }) => {
 
               {/* Comment */}
               <div className={styles.commentContainer}>
-                <div className={styles.actionItem} onClick={() => handleComment()}>
+                <div className={styles.actionItem} onClick={() => handleComment(v._id)}>
                   <span className={styles.icon}><FaRegComment /></span>
                   {/* <span className={styles.icon}><Comment /></span> */}
                   <span className={styles.count}>{v.commentCount || 0}</span>
@@ -413,7 +439,7 @@ const Home = ({ save, v, foodId }) => {
                   isOpen={isOverlayOpen}
                   onClose={handleCloseOverlay}
                   itemData={v}
-                  foodId={v._id}
+                  foodId={activeFoodId}
                 />
               </div>
 
@@ -442,18 +468,28 @@ const Home = ({ save, v, foodId }) => {
 
 
           <nav className={styles.bottomNav} aria-label="bottom navigation">
-            {/* <button className={styles.navButton} aria-label="record"></button> */}
+            <Link to="/user-profile">
+              <div>
+                <img className={styles.navButton} src={"https://media.gettyimages.com/id/2192202545/vector/avatar-profile-of-man-head-shape-flat-illustration.jpg?s=612x612&w=0&k=20&c=4B-EimX02cWXXZC_iPpQRiGkycmF6qtTWwzdD7o_XOo="} alt="profilephoto" />
+              </div>
+            </Link>
+            {/* <Link to="/save" className={styles.navLink}>
+              <div className={styles.navItem}><div className={styles.navLabel}><VscSaveAll /></div></div>
+            </Link> */}
+            <Link to="/notification" className={styles.navLink}>
+              <div className={styles.navItem}><div className={styles.navLabel}><IoNotificationsOutline /></div></div>
+            </Link>
+            {/* <Link to="/create-food" className={styles.navLink}>
+              <div className={styles.navItem}><div className={styles.homecreatefoodbtn}><RiAddLargeFill /></div></div>
+            </Link> */}
             <Link to="/home" className={styles.navLink}>
-              <div className={styles.navItem}><div className={styles.navLabel}><IoHomeOutline />Home</div></div>
-            </Link>
-            <Link to="/save" className={styles.navLink}>
-              <div className={styles.navItem}><div className={styles.navLabel}><IoSaveOutline />Save</div></div>
-            </Link>
-            <Link to="/cart" className={styles.navLink}>
-              <div className={styles.navItem}><div className={styles.navLabel}><BsCart3 />Cart</div></div>
+              <div className={styles.navItem}><div className={styles.navLabel}><IoHomeOutline /></div></div>
             </Link>
             <Link to="/buy" className={styles.navLink}>
-              <div className={styles.navLabel}>Buy Now</div>
+              <div className={styles.navLabel}><IoIosSearch /></div>
+            </Link>
+            <Link to="/cart" className={styles.navLink}>
+              <div className={styles.navItem}><div className={styles.navLabel}><MdRestaurantMenu /></div></div>
             </Link>
           </nav>
 

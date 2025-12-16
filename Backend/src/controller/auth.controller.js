@@ -88,6 +88,32 @@ async function loginUser(req, res) {
     })
 }
 
+async function GetUserProfile(req, res) {
+    const token = req.cookies.token;
+    if (!token) {
+        return res.status(401).json({ message: "Please Login First" });
+    }
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await userModel.findById(decoded.id).select("fullname email");
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.status(200).json({
+            message: "User profile fetched successfully",
+            user: {
+                _id: user._id,
+                email: user.email,
+                fullname: user.fullname
+            }
+        });
+    } catch (error) {
+        console.error("Error fetching user profile:", error);
+        res.status(500).json({ message: "Internal server error in user profile" });
+    }
+}
+
 async function logoutUser(req, res) {
     res.clearCookie("token");
     res.status(200)
@@ -228,7 +254,7 @@ async function foodPartnerProfile(req, res) {
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Server error" });
+        res.status(500).json({ message: "Server error in food partner profile" });
     }
     // const foodpartners = await foodPartnerModel.find({});
 
@@ -240,5 +266,6 @@ async function foodPartnerProfile(req, res) {
 
 export {
     registerUser, loginUser, logoutUser,
-    registerPartner, loginfoodPartner, logoutFoodPartner, foodPartnerProfile
+    registerPartner, loginfoodPartner, logoutFoodPartner, foodPartnerProfile,
+    GetUserProfile
 }

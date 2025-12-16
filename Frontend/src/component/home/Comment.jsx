@@ -51,15 +51,19 @@ const Comment = ({ isOpen, onClose, itemData, foodId, userId, commentText }) => 
 
     const sendComment = async () => {
         try {
+            if (!foodId) {
+                return console.log("foodId nhi ayi hai");
+            }
 
-            const res = await axios.post
-                ("http://localhost:3000/api/food/user/comment",
-                    {
-                        foodId: foodId,
-                        userId: userId,
-                        commentText: text
-                    },
-                    { withCredentials: true },)
+            const res = await axios.post(
+                "http://localhost:3000/api/food/user/comment",
+                {
+                    foodId,
+                    userId: userId,
+                    commentText: text
+                },
+                { withCredentials: true }
+            )
 
             console.log(res.data);
             setText("");
@@ -88,24 +92,30 @@ const Comment = ({ isOpen, onClose, itemData, foodId, userId, commentText }) => 
                 <div className={styles.commentModal}>
 
                     {/* 💡 Close button par 'onClose' function ko call karein */}
-                    <h2>Comments</h2>
-                    <button onClick={onClose} className={styles.closeButton}>
-                        Close
-                    </button>
+                    <div className={styles.headingbtn}>
+                        <h2>Comments</h2>
+                        <button onClick={onClose} className={styles.closeButton}>
+                            ✗
+                        </button>
+                    </div>
 
                     {/* Yahan aap comments list aur input field dal sakte hain */}
                     <p>Overlay content goes here...</p>
 
-                    <input
-                        placeholder='write a comment ...'
-                        type="text"
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                    />
-                    <button
-                        onClick={() => sendComment()}
-                        type='submit'
-                    > Post</button>
+                    <div className={styles.commentInputbtn}>
+                        <input
+                            className={styles.commentInput}
+                            placeholder='write a comment ...'
+                            type="text"
+                            value={text}
+                            onChange={(e) => setText(e.target.value)}
+                        />
+                        <div
+                            className={styles.commentsendBtn}
+                            onClick={() => sendComment()}
+                            type='button'
+                        > Send</div>
+                    </div>
 
                 </div>
             </div>
