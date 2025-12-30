@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Home.module.css'
 import axios from 'axios'
+import { useLocation } from 'react-router-dom';
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { RxDoubleArrowUp } from "react-icons/rx";
 import { PiShareFatThin } from "react-icons/pi";
@@ -164,15 +165,42 @@ const Home = ({ save, v, foodId }) => {
     }
   }, [])
 
-  useEffect(() => {
-    axios.get("http://localhost:3000/api/food/upload", { withCredentials: true })
-      .then(res => {
-        console.log("frontend food successful", res.data);
 
-        setVideos(res.data.foodItems)
-      })
-      .catch(err => console.error("Video fetch error:", err))
+  // useEffect(() => {
+  //   const fetchfood = axios.get("http://localhost:3000/api/food/upload", { withCredentials: true })
+  //   .then(res => {
+  //     console.log("frontend food successful", res.data);
+
+  //     setVideos(res.data.foodItems)
+  //   })
+  //   .catch(err => console.error("Video fetch error:", err))
+  // }, [])
+
+  const fetchFood = async () => {
+    try {
+      const res = await axios.get("http://localhost:3000/api/food/upload", { withCredentials: true })
+      console.log("frontend food successful", res.data);
+      setVideos(res.data.foodItems)
+
+    } catch (error) {
+      console.log("Video fetch error:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchFood();
   }, [])
+
+  const location = useLocation()
+
+  const handleHomeReload = () => {
+    if (location.pathname === "/home") {
+      document.body.classList.add("page-reload");
+      setTimeout(() => window.location.reload(), 350);
+    } else {
+      window.location.href = "/home";
+    }
+  };
 
 
   const likefood = async (food) => {
@@ -248,7 +276,7 @@ const Home = ({ save, v, foodId }) => {
 
     <div className={styles.reel} ref={containerRef}>
 
-        {/* <div
+      {/* <div
           type="button"
           className={styles.reelTopLeftBtn}
           aria-label="reel-top-left-btn"
@@ -271,7 +299,6 @@ const Home = ({ save, v, foodId }) => {
             playsInline
             loop
             preload="metadata"
-            autoPlay
           />
 
           {/* <div className={styles.overlay}>
@@ -482,9 +509,10 @@ const Home = ({ save, v, foodId }) => {
             {/* <Link to="/create-food" className={styles.navLink}>
               <div className={styles.navItem}><div className={styles.homecreatefoodbtn}><RiAddLargeFill /></div></div>
             </Link> */}
-            <Link to="/home" className={styles.navLink}>
+            <div
+              onClick={handleHomeReload}>
               <div className={styles.navItem}><div className={styles.navLabel}><IoHomeOutline /></div></div>
-            </Link>
+            </div>
             <Link to="/buy" className={styles.navLink}>
               <div className={styles.navLabel}><IoIosSearch /></div>
             </Link>

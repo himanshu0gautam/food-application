@@ -26,6 +26,6 @@ router.get("/saveFood", authUserMiddleware, getSaveFood)
 // comment
 router.post("/user/comment",authUserMiddleware, FoodCommnet)
 router.post("/user/replyComment/:commentId",authUserMiddleware, ReplyComment)
-router.get("/user/:postId", getAllComments)
+router.get("/user/:foodId", getAllComments)
 
 export default router;

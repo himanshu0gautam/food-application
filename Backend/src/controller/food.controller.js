@@ -155,9 +155,6 @@ console.log("comment api hit");
     try {
         const { foodId, commentText } = req.body;
         const userId = req.user._id;
-        console.log("userid",userId);   
-        console.log("foodId",foodId);
-         
 
         if (!foodId) {
             return res.status(400).json({ message: "foodId is required" })
@@ -208,15 +205,15 @@ async function ReplyComment(req, res) {
 async function getAllComments(req, res) {
     try {
 
-        const comments = await commmentModel.find({ postId: req.params.postId })
-            .populate("user", "name profilePic")
+        const comments = await commmentModel.find({ foodId: req.params.foodId })
+            .populate("userId", "fullname profilePic")
             .populate("replies.user", "name profilePic")
             .sort({ createdAt: -1 });
 
         res.status(200).json({
             success: true,
             message: "Comments fetched successfully",
-            comments
+            comment: comments
         })
 
     } catch (error) {

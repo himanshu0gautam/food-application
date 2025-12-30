@@ -11,7 +11,7 @@
 }
 
 .commentModal {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #2c2c2c;
     color: white;
     padding: 1rem 1.5rem;
     border-radius: 8px;
@@ -25,9 +25,8 @@
 }
 
 .closeButton {
-    border-radius: 50%;
-    width: 8%;
-    font-size: 1.2rem;
+    align-items: center;
+    font-size: 1.5rem;
     display: flex;
     justify-content: center;
 }
@@ -56,4 +55,39 @@
     padding: 7px 10px;
     font-size: 14px;
     font-weight: 200;
+}
+
+.mainCommentContainer{
+    /* background-color: red; */
+}
+
+.userdetails{
+    /* background-color: blue; */
+    margin: 12px 0 0 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.userImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+}
+
+.userName{
+    font-size: 14px;
+    font-weight: 200;
+    color: #aaa;
+}
+
+.commentcontainer{
+    /* background-color: red; */
+    display: flex;
+    gap: 0.4rem;
+    flex-direction: column;
+}
+
+.commentLike{
+    
 }
