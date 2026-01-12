@@ -1,0 +1,30 @@
+.mainContainer {
+    width: 100%;
+    overflow: hidden;
+}
+
+.slidebar {
+    width: 100%;
+}
+
+.slideImg img {
+    width: 100%;
+    height: 25rem;
+    /* object-fit: cover; */
+}
+
+@media (max-width: 768px) {
+    .slideImg img {
+        width: 100%;
+        height: 20rem;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 480px) {
+    .slideImg img {
+        width: 100%;
+        height: 10rem;
+        object-fit: cover;
+    }
+}
