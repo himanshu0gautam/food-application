@@ -3,8 +3,11 @@ import style from './NavCoursel.module.css'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import food1 from '../../../assets/food1.jpg'
-import food2 from '../../../assets/food2.jpg'
+import f1 from '../../../assets/f1.jpg'
+import f2 from '../../../assets/f2.jpg'
+import f3 from '../../../assets/f3.jpg'
+import { IoIosArrowDown } from "react-icons/io";
+import { IoSearch } from "react-icons/io5";
 
 const NavCoursel = () => {
 
@@ -33,7 +36,7 @@ const NavCoursel = () => {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     initialSlide: 1,
-                    arrows: false 
+                    arrows: false
                 }
             }
         ]
@@ -44,12 +47,34 @@ const NavCoursel = () => {
         <>
 
             <div className={style.mainContainer}>
+                <div className={style.overlayContent}>
+                    <div className={style.logoName}>
+                        <h3>Foo<span>D</span>ies</h3>
+                    </div>
+                    <div className={style.location}>
+                        <h4>Setup your loaction</h4>
+                    </div>
+
+                    <div className={style.searchbar}>
+                        <div className={style.searchbtn}>
+                            <IoSearch className={style.searchArrow} />
+                            <input type="text" placeholder='Search...' />
+                            <IoIosArrowDown className={style.searchArrow} />
+                        </div>
+                         {/* <div className={style.profile}></div> */}
+                    </div>
+
+                    <div className={style.profilebtn}>
+                        <div className={style.profile}></div>
+                        <div className={style.wallet}></div>
+                    </div>
+                </div>
                 <div className={style.slidebar}>
                     <div className={style.slide}>
                         <Slider {...setting}>
-                            <div className={style.slideImg}><img src={food1} alt="slide1" /></div>
-                            <div className={style.slideImg}><img src={food2} alt="slide2" /></div>
-                            {/* <div className={style.slideImg}><img src={food1} alt="slide1" /></div> */}
+                            <img src={f1} alt="slide1" />
+                            <img src={f2} alt="slide2" />
+                            <img src={f3} alt="slide3" />
                         </Slider>
                     </div>
 

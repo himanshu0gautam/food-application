@@ -1,0 +1,37 @@
+.categoryContainer {
+    width: 100%;
+}
+
+.category {
+    width: 100%;
+    padding: 0 0.5rem;
+    display: flex;
+    /* background-color: red; */
+    justify-content: space-around;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.categoryImg {
+    display: flex;
+    flex-direction: column;
+    padding-right: 0.7rem;
+    /* background-color: blue; */
+}
+
+.categoryImg img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.categoryName{
+     color: rgba(0, 0, 0, 0.567);
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-top: 0.3rem;
+}

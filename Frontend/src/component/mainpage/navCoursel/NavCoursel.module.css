@@ -1,17 +1,109 @@
 .mainContainer {
     width: 100%;
     overflow: hidden;
+    position: relative;
 }
 
 .slidebar {
-    width: 100%;
+    /* margin-top: 12px;
+    width: 100%; */
+    /* background-color: red; */
+    margin-top: 16px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
 }
 
-.slideImg img {
-    width: 100%;
-    height: 25rem;
-    /* object-fit: cover; */
+.slide {
+    /* width: 100%;
+    object-fit: cover;
+    border-radius: 12px; */
+    /* background-color: chartreuse; */
+    position: relative;
+    width: 85%;
+    border-radius: 30px;
+    overflow: hidden;
+    object-fit: contain;
+    background-color: #171a29;
 }
+
+/* .slide {
+    width: 100%;
+    opacity: 0.9;
+    overflow: hidden;
+    } */
+    
+.slide img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.overlayContent {
+    width: 100%;
+    flex-flow: row;
+    padding: 0px 8rem;
+    height: 4.9rem;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    position: sticky;
+    box-shadow: rgba(27, 30, 36, 0.1) 0px 8px 16px 0px;
+}
+
+.logoName h3 {
+    margin-right: 2.8rem;
+    color: #ff5d5d;
+    font-weight: 900;
+    font-size: 1.9rem;
+}
+
+.location {
+    display: flex;
+    font-size: 1rem;
+    font-family: system-ui;
+    align-items: center;
+}
+
+.location h4 {
+    /* font-weight: 600; */
+    color: rgba(0, 0, 0, 0.567);
+}
+
+.searchbar{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    padding-right: 2rem;
+}
+
+.profile{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: rgb(159, 141, 141);
+}
+
+.searchbtn {
+    background-color: rgb(240 240 240);
+    justify-content: end;
+    padding: 18px 22px;
+    max-width: 450px;
+    width: 100%;
+    display: flex;
+    border-radius: 8px;
+}
+
+.searchbtn input {
+    margin-left: 0.5rem;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+
 
 @media (max-width: 768px) {
     .slideImg img {
@@ -22,9 +114,102 @@
 }
 
 @media (max-width: 480px) {
-    .slideImg img {
+
+    .mainContainer {
         width: 100%;
-        height: 10rem;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .overlayContent h3 {
+        display: none;
+    }
+
+    .overlayContent h4 {
+        display: none;
+    }
+
+    .slidebar{
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .slide {
+        position: relative;
+        width: 100%;
+        height: 22rem;
+        border-radius: 0px;
+        overflow: hidden;
+        object-fit: contain;
+        object-position: center;
+        background-color: #171a29;
+    }
+
+    .slide img {
+        width: 100%;
+        height: 25rem;
         object-fit: cover;
+        object-position: center;
+    }
+
+    .overlayContent {
+        display: flex;
+        /* justify-content: space-around; */
+        align-items: center;
+        position: absolute;
+        top: 20px;
+        width: 100%;
+        z-index: 2;
+        padding: 0;
+    }
+
+    .searchbar{
+        padding: 0;
+    }
+
+    .searchbtn {
+        background-color: white;
+        border-radius: 12px;
+        padding: 12px 20px;
+        width: 100%;
+        max-width: 250px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        display: flex;
+        margin: 0;
+    }
+
+    .searchArrow {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+    }
+
+    .searchbtn input {
+        margin-left: 0.5rem;
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+    }
+
+    .profilebtn {
+        display: flex;
+        gap: 0.3rem;
+        padding: 10px;
+        /* margin-right: 1.5rem; */
+    }
+
+    .profile {
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        background-color: rgb(133, 139, 127);
+    }
+
+    .wallet {
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        background-color: rgb(133, 139, 127);
     }
 }
