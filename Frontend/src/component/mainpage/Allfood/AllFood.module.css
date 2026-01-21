@@ -1,0 +1,105 @@
+.mainfoodContainer {
+    width: 100%;
+}
+
+
+@media (max-width: 480px) {
+
+    .topherosection {
+        width: 100%;
+        /* background-color: red; */
+    }
+
+    .filter {
+        padding: 0.8rem;
+        width: 100%;
+        display: flex;
+        /* background-color: blue; */
+        gap: 1.2rem;
+        text-transform: uppercase;
+    }
+
+    .filter div {
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.7rem;
+        border: 1px solid rgba(128, 128, 128, 0.563);
+        padding: 0.3rem 0.5rem;
+        border-radius: 8px;
+    }
+
+    .mainherosection {
+        width: 100%;
+        /* background-color: green; */
+        padding: 0.4rem 0.8rem;
+    }
+
+    .mainherosection h3 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding: 0 1rem;
+        color: rgba(128, 128, 128, 0.563);
+    }
+
+    .foodcontainer {
+        width: 100%;
+        /* background-color: yellow; */
+        border-radius: 12px;
+        border: 1px solid rgba(128, 128, 128, 0.263);
+        /* padding: 0.8rem; */
+    }
+
+    .foodimage {
+        width: 100%;
+        /* background-color: red; */
+        object-fit: cover;
+    }
+
+    .foodimage img {
+        width: 100%;
+        height: 28vh;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .foodItemDetails {
+        width: 100%;
+        /* background-color: red; */
+        padding: 0.8rem;
+        line-height: 1.4;
+    }
+
+    .foodname {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-transform: capitalize;
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    .foodname h5 {
+        border: 1px solid rgba(0, 0, 0, 0.263);
+        border-radius: 12px;
+        padding: 0.2rem 0.4rem;
+        background-color: rgb(12, 170, 12);
+        color: white;
+        outline: none;
+    }
+
+    .foodtime {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.9rem;
+        color: rgba(0, 0, 0, 0.664);
+    }
+
+    .foodOffer {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.9rem;
+        color: rgba(0, 0, 0, 0.664);
+    }
+}

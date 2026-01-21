@@ -9,8 +9,10 @@ const FoodCategoryitem = [
     { id: 4, name: "Desserts", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
     { id: 5, name: "Cake", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
     { id: 6, name: "Salads", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
-    { id: 6, name: "Salads", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
-    { id: 6, name: "Salads", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
+    { id: 9, name: "Salads", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
+    { id: 8, name: "Salads", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
+    { id: 8, name: "Salads", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
+    { id: 8, name: "Salads", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
 ]
 
 const FoodCategory = () => {

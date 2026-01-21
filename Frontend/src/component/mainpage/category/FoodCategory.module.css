@@ -3,35 +3,114 @@
 }
 
 .category {
-    width: 100%;
-    padding: 0 0.5rem;
+    width: 85%;
+    padding: 0.5rem 2rem;
+    margin-left: 7rem;
     display: flex;
     /* background-color: red; */
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     overflow-y: auto;
+    gap: 4.2rem;
 }
+
+.category::-webkit-scrollbar {
+    height: 0px;
+    /* Horizontal scrollbar ki height */
+    width: 1px;
+    /* Vertical scrollbar ki width */
+}
+
 
 .categoryImg {
     display: flex;
     flex-direction: column;
-    padding-right: 0.7rem;
+    /* padding-right: 0.7rem; */
     /* background-color: blue; */
 }
 
 .categoryImg img {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     border-radius: 50px;
     object-fit: cover;
     object-position: center;
     display: block;
 }
 
-.categoryName{
-     color: rgba(0, 0, 0, 0.567);
+.categoryName {
+    color: rgba(0, 0, 0, 0.567);
     text-align: center;
     font-size: 0.7rem;
     font-weight: 700;
     margin-top: 0.3rem;
+}
+
+
+@media (max-width: 480px) {
+
+    .category {
+        width: 100%;
+        padding: 0.5rem 0.7rem;
+        margin: 0;
+        display: flex;
+        /* background-color: red; */
+        justify-content: flex-start;
+        align-items: center;
+        overflow-y: auto;
+        gap: 1.5rem;
+    }
+
+    .category::-webkit-scrollbar {
+        height: 4px;
+        /* Horizontal scrollbar ki height */
+        width: 1px;
+        /* Vertical scrollbar ki width */
+    }
+
+    .category::-webkit-scrollbar-thumb {
+        background-color: #0d9488;
+        /* Aapka green/blue color */
+        border-radius: 20px;
+
+        /* Trick: Border aur transparent color use karke thumb ko "chota" dikhayein */
+        border: 2px solid transparent;
+        background-clip: content-box;
+    }
+
+    .category::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        /* Track ka color */
+        margin: 0 20%;
+        /* Track ko dono side se squeeze karne ke liye */
+    }
+
+    .category::-webkit-scrollbar-thumb:hover {
+        background-color: #ea580c;
+        /* Hover karne par dark color */
+    }
+
+    .categoryImg {
+        display: flex;
+        flex-direction: column;
+        /* padding-right: 0.7rem; */
+        /* background-color: blue; */
+    }
+
+    .categoryImg img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+
+    .categoryName {
+        color: rgba(0, 0, 0, 0.567);
+        text-align: center;
+        font-size: 0.7rem;
+        font-weight: 700;
+        margin-top: 0.3rem;
+    }
 }
