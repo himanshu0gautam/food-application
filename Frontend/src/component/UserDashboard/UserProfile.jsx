@@ -2,9 +2,15 @@ import React, { useEffect, useState } from 'react'
 import styles from './UserProfile.module.css'
 import axios from 'axios'
 import Save from "../home/Save"
+import { useNavigate } from 'react-router-dom'
 
 
 const UserProfile = () => {
+
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  console.log(token);
+  
 
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)

@@ -11,8 +11,8 @@ const FoodCategoryitem = [
     { id: 6, name: "Salads", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
     { id: 9, name: "Salads", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
     { id: 8, name: "Salads", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
-    { id: 8, name: "Salads", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
-    { id: 8, name: "Salads", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
+    { id: 10, name: "Salads", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
+    { id: 11, name: "Salads", src: "https://i.pinimg.com/736x/0f/0c/04/0f0c04461875fcf40f1df2d279aafe89.jpg" },
 ]
 
 const FoodCategory = () => {
@@ -23,7 +23,7 @@ const FoodCategory = () => {
                     {FoodCategoryitem.map((item) => (
                         <div key={item.id}>
                             <div className={style.categoryImg}>
-                                <img src={item.src} alt="img1" srcset="" />
+                                <img src={item.src} alt="img1" />
                             <h6 className={style.categoryName}>{item.name}</h6>
                             </div>
                         </div>

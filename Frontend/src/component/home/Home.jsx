@@ -495,7 +495,7 @@ const Home = ({ save, v, foodId }) => {
 
 
           <nav className={styles.bottomNav} aria-label="bottom navigation">
-            <Link to="/user-profile">
+            <Link to="/food/user-profile">
               <div>
                 <img className={styles.navButton} src={"https://media.gettyimages.com/id/2192202545/vector/avatar-profile-of-man-head-shape-flat-illustration.jpg?s=612x612&w=0&k=20&c=4B-EimX02cWXXZC_iPpQRiGkycmF6qtTWwzdD7o_XOo="} alt="profilephoto" />
               </div>

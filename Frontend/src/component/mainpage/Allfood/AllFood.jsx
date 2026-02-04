@@ -6,6 +6,9 @@ import { BiSolidOffer } from "react-icons/bi";
 
 const fooditem = [
     { id: 1, name: "Corn pizza", time: "30min", distance: "2.5 km", offer: "60% off", rating: 4.2 },
+    { id: 2, name: "fry momo", time: "10min", distance: "2.5 km", offer: "60% off", rating: 4.2 },
+    { id: 3, name: "thali", time: "50min", distance: "2.5 km", offer: "60% off", rating: 4.2 },
+    { id: 4, name: "burger", time: "15min", distance: "2.5 km", offer: "60% off", rating: 4.2 },
 ]
 
 const AllFood = () => {
@@ -19,26 +22,30 @@ const AllFood = () => {
                         <div>near & fast</div>
                     </div>
                 </div>
+                <h3 className={style.foodheading}>Recommended for you</h3>
+
                 <div className={style.mainherosection}>
-                    {/* <h3>Recommended for you</h3> */}
-                    <div className={style.foodcontainer}>
-                        <div className={style.foodimage}>
-                            <img src={f1} alt="img" />
+                    {fooditem.map((item) => (
+                        <div key={item.id} className={style.foodcontainer}>
+                            <div className={style.foodimage}>
+                                <img src={f1} alt="img" />
+                            </div>
+                            <div className={style.foodItemDetails}>
+                                <div className={style.foodname}>
+                                    {item.name}
+                                    <h5>{item.rating}</h5>
+                                </div>
+                                <div className={style.foodtime}>
+                                    <MdOutlineTimer /> {item.time} | 2.5 km
+                                </div>
+                                <div className={style.foodOffer}>
+                                    <BiSolidOffer /> {item.offer}
+                                </div>
+                            </div>
                         </div>
-                        <div className={style.foodItemDetails}>
-                            <div className={style.foodname}>
-                                corn double pizza 
-                                <h5>4.2</h5>
-                            </div>
-                            <div className={style.foodtime}>
-                               <MdOutlineTimer /> 30-40 min | 2.5 km
-                            </div>
-                            <div className={style.foodOffer}>
-                               <BiSolidOffer /> 80% off
-                            </div>
-                        </div>
+                ))}
                     </div>
-                </div>
+
             </div>
         </>
     )

@@ -34,7 +34,7 @@
         padding: 0.4rem 0.8rem;
     }
 
-    .mainherosection h3 {
+    .foodheading {
         font-size: 0.9rem;
         font-weight: 600;
         padding: 0 1rem;
@@ -47,6 +47,7 @@
         border-radius: 12px;
         border: 1px solid rgba(128, 128, 128, 0.263);
         /* padding: 0.8rem; */
+        margin-bottom: 0.7rem;
     }
 
     .foodimage {
