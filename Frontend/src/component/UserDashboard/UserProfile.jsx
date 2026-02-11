@@ -6,10 +6,6 @@ import { useNavigate } from 'react-router-dom'
 
 
 const UserProfile = () => {
-
-  const navigate = useNavigate();
-  const token = localStorage.getItem("token");
-  console.log(token);
   
 
   const [user, setUser] = useState(null)

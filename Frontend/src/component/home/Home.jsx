@@ -9,6 +9,7 @@ import { FiBookmark } from "react-icons/fi";
 import { FaBookmark } from "react-icons/fa";
 import { VscSaveAll } from "react-icons/vsc";
 import { IoHomeOutline } from "react-icons/io5";
+import { GoPlay } from "react-icons/go";
 import { BsCart3 } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 import { useNavigate, Link } from 'react-router-dom'
@@ -24,6 +25,7 @@ import { IoIosSearch } from "react-icons/io";
 import { IoNotificationsOutline } from "react-icons/io5";
 // import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdRestaurantMenu } from "react-icons/md";
+import BottomNav from '../mainpage/BottomNav/BottomNav';
 
 
 const Home = ({ save, v, foodId }) => {
@@ -494,32 +496,7 @@ const Home = ({ save, v, foodId }) => {
           </div>
 
 
-          <nav className={styles.bottomNav} aria-label="bottom navigation">
-            <Link to="/food/user-profile">
-              <div>
-                <img className={styles.navButton} src={"https://media.gettyimages.com/id/2192202545/vector/avatar-profile-of-man-head-shape-flat-illustration.jpg?s=612x612&w=0&k=20&c=4B-EimX02cWXXZC_iPpQRiGkycmF6qtTWwzdD7o_XOo="} alt="profilephoto" />
-              </div>
-            </Link>
-            {/* <Link to="/save" className={styles.navLink}>
-              <div className={styles.navItem}><div className={styles.navLabel}><VscSaveAll /></div></div>
-            </Link> */}
-            <Link to="/notification" className={styles.navLink}>
-              <div className={styles.navItem}><div className={styles.navLabel}><IoNotificationsOutline /></div></div>
-            </Link>
-            {/* <Link to="/create-food" className={styles.navLink}>
-              <div className={styles.navItem}><div className={styles.homecreatefoodbtn}><RiAddLargeFill /></div></div>
-            </Link> */}
-            <div
-              onClick={handleHomeReload}>
-              <div className={styles.navItem}><div className={styles.navLabel}><IoHomeOutline /></div></div>
-            </div>
-            <Link to="/buy" className={styles.navLink}>
-              <div className={styles.navLabel}><IoIosSearch /></div>
-            </Link>
-            <Link to="/cart" className={styles.navLink}>
-              <div className={styles.navItem}><div className={styles.navLabel}><MdRestaurantMenu /></div></div>
-            </Link>
-          </nav>
+          <BottomNav />
 
         </section>
 

@@ -32,7 +32,7 @@
     opacity: 0.9;
     overflow: hidden;
     } */
-    
+
 .slide img {
     width: 100%;
     object-fit: cover;
@@ -71,14 +71,14 @@
     color: rgba(0, 0, 0, 0.567);
 }
 
-.searchbar{
+.searchbar {
     width: 100%;
     display: flex;
     justify-content: end;
     padding-right: 2rem;
 }
 
-.profile{
+.profile {
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -129,7 +129,7 @@
         display: none;
     }
 
-    .slidebar{
+    .slidebar {
         margin: 0;
         margin-bottom: 10px;
     }
@@ -163,14 +163,15 @@
         padding: 0;
     }
 
-    .searchbar{
+    .searchbar {
         padding: 0;
     }
 
     .searchbtn {
+        align-items: center;
         background-color: white;
         border-radius: 12px;
-        padding: 12px 20px;
+        padding: 6px 20px;
         width: 100%;
         max-width: 250px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -196,6 +197,8 @@
         display: flex;
         gap: 0.3rem;
         padding: 10px;
+        align-items: center;
+        justify-content: center;
         /* margin-right: 1.5rem; */
     }
 
@@ -207,9 +210,23 @@
     }
 
     .wallet {
+        display: flex;
+        align-items: center;
         width: 40px;
         height: 40px;
         border-radius: 50px;
         background-color: rgb(133, 139, 127);
     }
+
+    .wallet span {
+        margin-left: 0.75rem;
+    }
+
+    .profile img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        background-color: rgb(133, 139, 127);
+    }
+
 }

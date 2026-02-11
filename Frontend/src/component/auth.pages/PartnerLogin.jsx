@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router-dom'
 
 const PartnerLogin = () => {
 
-        const [email, setEmail] = useState('')
-        const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
 
-         const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const res = await axios.post('http://localhost:3000/api/auth/food-partner/login', { email, password }, { withCredentials: true });
@@ -28,7 +28,7 @@ const PartnerLogin = () => {
                 <div className={styles.card}>
                     <h2 className={styles.title}>Food Partner Login</h2>
                     <form className={styles.form} onSubmit={handleSubmit}>
-                        <input type="email" placeholder="Email" className={styles.input} value={email} onChange={e => setEmail(e.target.value)}/>
+                        <input type="email" placeholder="Email" className={styles.input} value={email} onChange={e => setEmail(e.target.value)} />
                         <input type="password" placeholder="Password" className={styles.input} value={password} onChange={e => setPassword(e.target.value)} />
                         <button type="submit" className={styles.button}>Login</button>
                     </form>

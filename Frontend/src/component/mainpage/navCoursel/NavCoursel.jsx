@@ -8,6 +8,7 @@ import f2 from '../../../assets/f2.jpg'
 import f3 from '../../../assets/f3.jpg'
 import { IoIosArrowDown } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
+import { SlWallet } from "react-icons/sl";
 
 const NavCoursel = () => {
 
@@ -65,8 +66,10 @@ const NavCoursel = () => {
                     </div>
 
                     <div className={style.profilebtn}>
-                        <div className={style.profile}></div>
-                        <div className={style.wallet}></div>
+                        <div className={style.wallet}><span><SlWallet /></span></div>
+                        <div className={style.profile}>
+                            <img src="https://i.pinimg.com/736x/a9/75/93/a975934bb378afc4ca8c133df451f56e.jpg" alt="" />
+                        </div>
                     </div>
                 </div>
                 <div className={style.slidebar}>

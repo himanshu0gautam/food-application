@@ -1,6 +1,6 @@
 :root {
   --overlay-bg: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
-  --bottom-nav-height: 68px;
+  --bottom-nav-height: 60px;
 }
 
 .reel {

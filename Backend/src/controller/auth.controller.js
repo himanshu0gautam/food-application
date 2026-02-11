@@ -32,7 +32,7 @@ async function registerUser(req, res) {
         })
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
-        res.cookie("token", token)
+        res.cookie("token", token,{ maxAge: 15 * 24 * 60 * 60 * 1000 })
         res.status(201)
             .json({
                 message: "user create successfully",
@@ -76,7 +76,7 @@ async function loginUser(req, res) {
     const redisToken = await client.get(`auth_${user._id}`);
     console.log("Token stored in Redis =>", redisToken);
 
-    res.cookie("token", token)
+    res.cookie("token", token, { maxAge: 15 * 24 * 60 * 60 * 1000 })
 
     res.status(200).json({
         message: "user login in successfully",
