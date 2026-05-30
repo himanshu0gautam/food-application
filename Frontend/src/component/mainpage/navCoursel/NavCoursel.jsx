@@ -56,21 +56,27 @@ const NavCoursel = () => {
                         <h4>Setup your loaction</h4>
                     </div>
 
-                    <div className={style.searchbar}>
+                    {/* <div className={style.searchbar}>
                         <div className={style.searchbtn}>
                             <IoSearch className={style.searchArrow} />
                             <input type="text" placeholder='Search...' />
                             <IoIosArrowDown className={style.searchArrow} />
                         </div>
-                         {/* <div className={style.profile}></div> */}
-                    </div>
+                         <div className={style.profile}></div>
+                    </div> */}
 
                     <div className={style.profilebtn}>
-                        <div className={style.wallet}><span><SlWallet /></span></div>
+                        <div className={style.searchbtn}>
+                            <IoSearch className={style.searchArrow} />
+                            <input type="text" placeholder='Search...' />
+                            <IoIosArrowDown className={style.searchArrow} />
+                        </div>
+                        {/* <div className={style.wallet}><span><SlWallet /></span></div> */}
                         <div className={style.profile}>
                             <img src="https://i.pinimg.com/736x/a9/75/93/a975934bb378afc4ca8c133df451f56e.jpg" alt="" />
                         </div>
                     </div>
+
                 </div>
                 <div className={style.slidebar}>
                     <div className={style.slide}>

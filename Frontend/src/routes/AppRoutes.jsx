@@ -7,6 +7,7 @@ import PartnerProfile from '../component/partnerDashboard/PartnerProfile'
 import UserProfile from '../component/UserDashboard/UserProfile'
 import Notification from '../Pages/Notification'
 import ProtectRoute from '../protectRoute/ProtectRoute'
+import FoodDetails from '../Pages/FoodDetails'
 
 
 const AppRoutes = () => {
@@ -27,8 +28,10 @@ const AppRoutes = () => {
           </ProtectRoute>
         }></Route>
         <Route path='notification' element={<Notification />}></Route>
+        <Route path='food-details' element={<FoodDetails />}></Route>
       </Routes>
   )
 }
+
 
 export default AppRoutes

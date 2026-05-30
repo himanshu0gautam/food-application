@@ -2,7 +2,7 @@
 import dotenv from "dotenv"
 import connetDB from "./src/db/db.js"
 import { app } from "./src/app.js";
-import client from "./src/db/Redis.js"
+// import client from "./src/db/Redis.js"
 import { socketServer } from "./src/services/Socket.io.js";
 import http from "http"
 

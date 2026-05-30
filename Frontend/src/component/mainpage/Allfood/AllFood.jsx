@@ -1,5 +1,6 @@
 import React from 'react'
 import style from './AllFood.module.css'
+import { Link } from 'react-router-dom'
 import f1 from '../../../assets/f1.jpg'
 import { MdOutlineTimer } from "react-icons/md";
 import { BiSolidOffer } from "react-icons/bi";
@@ -27,9 +28,11 @@ const AllFood = () => {
                 <div className={style.mainherosection}>
                     {fooditem.map((item) => (
                         <div key={item.id} className={style.foodcontainer}>
-                            <div className={style.foodimage}>
-                                <img src={f1} alt="img" />
-                            </div>
+                            <Link to="/food/food-details">
+                                <div className={style.foodimage}>
+                                    <img src={f1} alt="img" />
+                                </div>
+                            </Link>
                             <div className={style.foodItemDetails}>
                                 <div className={style.foodname}>
                                     {item.name}
@@ -43,8 +46,8 @@ const AllFood = () => {
                                 </div>
                             </div>
                         </div>
-                ))}
-                    </div>
+                    ))}
+                </div>
 
             </div>
         </>
