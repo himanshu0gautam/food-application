@@ -1,33 +1,31 @@
-import { createClient } from 'redis';
+import { createClient } from "redis";
 
 const client = createClient({
-    username: 'default',
-    password: 'TW0q7nSXnamFQkrhOl3s1XKTUeWXBgiv',
-    socket: {
-        host: 'redis-19214.c52.us-east-1-4.ec2.cloud.redislabs.com',
-        port: 19214
-    }
+  username: "default",
+  password: "Cwo8RuH9vUEXyv86f84Oi1NNmyIMfQTr",
+  socket: {
+    host: "sheep-strategic-powder-75383.db.redis.io",
+    port: 15671,
+  },
 });
 
-client.on('error', err => console.log('Redis Client Error', err));
-
+client.on("error", (err) => console.log("Redis Client Error", err));
 
 (async () => {
-    try {
-        await client.connect();
-        console.log("✅ Redis Connected Successfully");
+  try {
+    await client.connect();
+    console.log("✅ Redis Connected Successfully");
 
-        const ping = await client.ping();
-        console.log("PING Response:", ping);  // should print “PONG”
+    const ping = await client.ping();
+    console.log("PING Response:", ping); // should print “PONG”
 
-        await client.set('foo', 'bar');
-        const result = await client.get('foo');
+    await client.set("foo", "bar");
+    const result = await client.get("foo");
 
-        console.log("Stored value =>", result);  // should print “bar”
-    } catch (err) {
-        console.log("❌ Connection Test Failed:", err);
-    }
+    console.log("Stored value =>", result); // should print “bar”
+  } catch (err) {
+    console.log("❌ Connection Test Failed:", err);
+  }
 })();
 
 export default client;
-

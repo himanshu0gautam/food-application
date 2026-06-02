@@ -34,7 +34,7 @@ const UserLogin = () => {
                         <button type="submit" className={styles.button}>Login</button>
                     </form>
                     <p className={styles.link}>
-                        Don’t have an account? <a href="/food/user/register">Register</a>
+                        Don’t have an account? <a href="/user/register">Register</a>
                     </p>
                 </div>
             </div>

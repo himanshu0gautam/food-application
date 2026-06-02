@@ -2,12 +2,13 @@ import React from "react";
 import style from "./bottomNav.module.css";
 import { useNavigate, Link } from "react-router-dom";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { IoHomeOutline } from "react-icons/io5";
+import { AiFillHome } from "react-icons/ai";
 // import { IoIosSearch } from "react-icons/io";
 // import { MdRestaurantMenu } from "react-icons/md";
-import { GoPlay } from "react-icons/go";
-import { LiaCartPlusSolid } from "react-icons/lia";
+import { MdOutlinePlayCircleFilled } from "react-icons/md"
+import { FaCartPlus } from "react-icons/fa";
 import { GiPowerLightning } from "react-icons/gi";
+import { TbNumber99Small } from "react-icons/tb";
 
 const BottomNav = () => {
   const handleHomeReload = () => {
@@ -26,8 +27,7 @@ const BottomNav = () => {
         <Link to="/">
           <div className={style.navItem}>
             <div className={style.navLabel}>
-              <IoHomeOutline />
-            <div style={{ fontSize: "0.8rem", color: "black" }}>home</div>
+              <AiFillHome /> <span>Home</span>
             </div>
           </div>
         </Link>
@@ -36,20 +36,16 @@ const BottomNav = () => {
         <Link to="/food/home" className={style.navLink}>
           <div className={style.navItem}>
             <div className={style.navLabel}>
-              <GoPlay />
+              <MdOutlinePlayCircleFilled /> <span>video</span>
             </div>
           </div>
         </Link>
 
-        <Link to="/food/user-profile">
-          <div>
-            <img
-              className={style.navButton}
-              src={
-                "https://media.gettyimages.com/id/2192202545/vector/avatar-profile-of-man-head-shape-flat-illustration.jpg?s=612x612&w=0&k=20&c=4B-EimX02cWXXZC_iPpQRiGkycmF6qtTWwzdD7o_XOo="
-              }
-              alt="profilephoto"
-            />
+        <Link to="/food/99store">
+          <div className={style.navItem}>
+          <div className={style.navLabel}>
+            <TbNumber99Small /> <span>store</span>
+          </div>
           </div>
         </Link>
         {/* <Link to="/save" className={style.navLink}>
@@ -61,14 +57,14 @@ const BottomNav = () => {
         <Link to="/Bolt" className={style.navLink}>
         <div className={style.navItem}>
           <div className={style.navLabel}>
-            <GiPowerLightning />
+            <GiPowerLightning /> <span>Bolt</span>
           </div>
           </div>
         </Link>
         <Link to="/reorder" className={style.navLink}>
           <div className={style.navItem}>
             <div className={style.navLabel}>
-              <LiaCartPlusSolid />
+              <FaCartPlus /> <span>Reorder</span>
             </div>
           </div>
         </Link>

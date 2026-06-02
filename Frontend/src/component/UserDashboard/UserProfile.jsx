@@ -3,14 +3,18 @@ import styles from './UserProfile.module.css'
 import axios from 'axios'
 import Save from "../home/Save"
 import { useNavigate } from 'react-router-dom'
-
+import { RxHamburgerMenu } from "react-icons/rx";
+import { GrClose } from "react-icons/gr";
 
 const UserProfile = () => {
   
 
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [openMenu, setOpenMenu] = useState(false)
 
+
+console.log("user profile render", openMenu);
   useEffect(() => {
     axios.get("http://localhost:3000/api/auth/user/profile",
       { withCredentials: true }
@@ -44,18 +48,42 @@ const UserProfile = () => {
               <div className={styles.left}>
                 <div className={styles.avatar} />
                   <img className={styles.avatarImage} src={"https://media.gettyimages.com/id/2192202545/vector/avatar-profile-of-man-head-shape-flat-illustration.jpg?s=612x612&w=0&k=20&c=4B-EimX02cWXXZC_iPpQRiGkycmF6qtTWwzdD7o_XOo="} alt="himanshu" />
-                <div className={styles.partnerName}>{v.fullname}</div>
+                <div className={styles.partnerName}>{v.fullname}
+                  {/* <div className={styles.phoneNumber}>+91 999999999</div> */}
+
+                </div>
               </div>
 
-              {/* <div className={styles.right}>
-                <div className={styles.businessName}>{v.BusinessName}</div>
+              <div className={styles.right}>
+                  <div className={styles.menu} onClick={() => setOpenMenu(true)}>
+                    <RxHamburgerMenu />
+                  </div>
+                  {openMenu && (
+                   <div className={styles.menuContent}>
+                    <div className={styles.closeButton} onClick={() => setOpenMenu(false)}>
+                      <GrClose />
+                    </div>
+                    <div className={styles.menuItems}>
+                      <div className={styles.menuItem}>Your Order</div>
+                      <div className={styles.menuItem}>Appearance</div>
+                      <div className={styles.menuItem}>edit profile</div>
+                      <div className={styles.menuItem}>address</div>
+                      <div className={styles.menuItem}>for employees</div>
+                      <div className={styles.menuItem}>Your feedback</div>
+                      <div className={styles.menuItem}>about</div>
+                      <div className={styles.menuItem}>setting</div>
+                      <div className={styles.menuItem}>logout</div>
+                    </div>
+                   </div>
+                  )}
+                {/* <div className={styles.businessName}>{v.BusinessName}</div>
                 <div className={styles.shopDetails}>{v.shopDetails}</div>
                 <div className={styles.descriptionBox}>{v.description}</div>
                 <div className={styles.ratingRow}>
                   <span>Rating</span>
                   <div className={styles.stars}>★★★★★</div>
-                </div>
-              </div> */}
+                </div> */}
+              </div>
             </header>
           )
         ))}
