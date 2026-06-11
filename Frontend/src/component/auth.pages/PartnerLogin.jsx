@@ -16,7 +16,9 @@ const PartnerLogin = () => {
         try {
             const res = await axios.post('http://localhost:3000/api/auth/food-partner/login', { email, password }, { withCredentials: true });
             // if login successful, you may receive a token or cookie. Navigate to /home
-            navigate('/create-food');
+            // navigate('/food/create-food');
+            const role = localStorage.setItem('role', res.data.foodPartner.role);
+            navigate('/');
         } catch (err) {
             console.error('Login error', err);
         }

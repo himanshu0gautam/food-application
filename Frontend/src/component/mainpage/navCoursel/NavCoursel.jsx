@@ -17,6 +17,8 @@ const NavCoursel = () => {
     localStorage.getItem("user_address") || "no location set",
   );
 
+  const [role, setRole] = useState(localStorage.getItem("role"));
+
   const setting = {
     dot: true,
     Infinity: true,
@@ -100,7 +102,7 @@ const NavCoursel = () => {
               <IoIosArrowDown className={style.searchArrow} />
             </div>
             {/* <div className={style.wallet}><span><SlWallet /></span></div> */}
-            <Link to="/food/user-profile">
+            <Link to={role === "foodpartner" ? "/food/user-profile" : "/food/partner-profile"}>
               <div className={style.profile}>
                 <img
                   src="https://i.pinimg.com/736x/a9/75/93/a975934bb378afc4ca8c133df451f56e.jpg"

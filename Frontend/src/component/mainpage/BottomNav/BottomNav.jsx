@@ -24,7 +24,7 @@ const BottomNav = () => {
     <>
       <nav className={style.bottomNav} aria-label="bottom navigation">
         {/* <div onClick={handleHomeReload}> */}
-        <Link to="/">
+        <Link to="/" className={style.navLink}>
           <div className={style.navItem}>
             <div className={style.navLabel}>
               <AiFillHome /> <span>Home</span>
@@ -41,7 +41,7 @@ const BottomNav = () => {
           </div>
         </Link>
 
-        <Link to="/food/99store">
+        <Link to="/food/99store" className={style.navLink}>
           <div className={style.navItem}>
           <div className={style.navLabel}>
             <TbNumber99Small /> <span>store</span>

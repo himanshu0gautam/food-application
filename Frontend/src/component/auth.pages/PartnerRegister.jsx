@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from "../../styles/auth.module.css"
 // import "../App.css"
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const PartnerRegister = () => {
 
@@ -12,6 +13,8 @@ const PartnerRegister = () => {
         BusinessName: "",
         shopDetails: "",
     });
+
+    const navigate = useNavigate();
 
     const handlechange = (e) => {
         const { name, value } = e.target;
@@ -35,6 +38,7 @@ const PartnerRegister = () => {
 
             // reset form after successful submission
             setFormData({ fullname: "", email: "", password: "", BusinessName: "", shopDetails: ""});
+            navigate('/food-partner/login');
         } catch (error) {
             console.error('Registration error:', error);
         }

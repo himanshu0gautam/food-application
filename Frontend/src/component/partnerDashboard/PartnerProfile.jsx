@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import styles from './PartnerProfile.module.css'
-import axios from 'axios'
+import React, { useEffect, useState } from "react";
+import styles from "./PartnerProfile.module.css";
+import axios from "axios";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { GrClose } from "react-icons/gr";
+import { Link } from "react-router-dom";
 
 // const sampleThumbs = [
 //     '/video/v1.mp4',
@@ -11,93 +14,124 @@ import axios from 'axios'
 // ]
 
 const PartnerProfile = () => {
+  const [partner, setPartner] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [openMenu, setOpenMenu] = useState(false);
 
-    const [partner, setPartner] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/auth/food-partner/profile", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log("API response", res.data);
+        setPartner(res.data.partner);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("API Error:", err);
+        // show server-provided message when available
+        const msg =
+          err?.response?.data?.message ||
+          err.message ||
+          "Failed to fetch partner profiles";
+        setError(msg);
+        setLoading(false);
+      });
+  }, []);
 
+  if (loading) return <p>loading....</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
+  if (!partner) return <p>No profile found</p>;
+  // normalize to an array so .map is safe whether API returns object or array
+  const partnerList = Array.isArray(partner) ? partner : [partner];
 
-    useEffect(() => {
-        axios.get("http://localhost:3000/api/auth/food-partner/profile", {
-            withCredentials: true,
-        })
-            .then((res) => {
-                console.log("API response", res.data);
-                setPartner(res.data.partner);
-                setLoading(false);
-            })
-            .catch((err) => {
-                console.error("API Error:", err);
-                // show server-provided message when available
-                const msg = err?.response?.data?.message || err.message || "Failed to fetch partner profiles";
-                setError(msg);
-                setLoading(false);
-            });
-    }, []);
+  return (
+    <div className={styles.container}>
+      {partnerList.map((p) => (
+        <header key={p._id} className={styles.header}>
+          <div className={styles.left}>
+            <div className={styles.avatar} />
+            <div className={styles.partnerName}>{p.fullname}</div>
+          </div>
 
-    if (loading) return <p>loading....</p>
-    if (error) return <p style={{ color: "red" }}>{error}</p>
-    if (!partner) return <p>No profile found</p>;
-    // normalize to an array so .map is safe whether API returns object or array
-    const partnerList = Array.isArray(partner) ? partner : [partner];
+          <div className={styles.right}>
+                      <div className={styles.menu} onClick={() => setOpenMenu(true)}>
+                <RxHamburgerMenu />
+              </div>
+              {openMenu && (
+                <div className={styles.menuContent}>
+                  <div
+                    className={styles.closeButton}
+                    onClick={() => setOpenMenu(false)}
+                  >
+                    <GrClose />
+                  </div>
+                  <div className={styles.menuItems}>
+                    <div className={styles.menuItem}>Create food</div>
+                    <Link to="/food/create-food" className={styles.navlink}>
+                    <div className={styles.menuItem}>video</div>
+                    </Link>
+                    <div className={styles.menuItem}>edit profile</div>
+                    <div className={styles.menuItem}>Appearance</div>
+                    <div className={styles.menuItem}>address</div>
+                    <div className={styles.menuItem}>for employees</div>
+                    <div className={styles.menuItem}>Your feedback</div>
+                    <div className={styles.menuItem}>about</div>
+                    <div className={styles.menuItem}>setting</div>
+                    <div className={styles.menuItem}>logout</div>
+                  </div>
+                </div>
+              )}
 
-    return (
-        <div className={styles.container}>
-            {partnerList.map((p) => (
-                <header key={p._id} className={styles.header}>
-                    <div className={styles.left}>
-                        <div className={styles.avatar} />
-                        <div className={styles.partnerName}>{p.fullname}</div>
+            <div className={styles.businessName}>{p.BusinessName}</div>
+            <div className={styles.shopDetails}>{p.shopDetails}</div>
+            <div className={styles.descriptionBox}>{p.description}</div>
+            <div className={styles.ratingRow}>
+              <span>Rating</span>
+              <div className={styles.stars}>★★★★★</div>
+            </div>
+          </div>
 
-                    </div>
-                    <div className={styles.right}>
-                        <div className={styles.businessName}>{p.BusinessName}</div>
-                        <div className={styles.shopDetails}>{p.shopDetails}</div>
-                        <div className={styles.descriptionBox}>{p.description}</div>
-                        <div className={styles.ratingRow}>
-                            <span>Rating</span>
-                            <div className={styles.stars}>★★★★★</div>
-                        </div>
-                    </div>
-                </header>
-            ))}
+        </header>
+      ))}
 
-            {/* food videos */}
+      {/* food videos */}
 
-            <div className={styles.mealSection}>
-               
-                {/* <div className={styles.thumbRow}>
+      <div className={styles.mealSection}>
+        {/* <div className={styles.thumbRow}>
           {sampleThumbs.map((src, idx) => (
             <div key={idx} className={styles.thumbCircle}>
             <video src={src} className={styles.thumbVideo} muted />
             </div>
             ))}
             </div> */}
-            <div className={styles.meal}>
-            <h3 className={styles.mealTitle}>Meal</h3>
-                <div className={styles.totalMeal}>
-                    Total Meal: {partnerList[0]?.foodItems?.length || 0} {""} 
-                    <span>Customer Serve: 3k</span></div>
-            </div>
-
-                <div className={styles.grid}>
-                    {partnerList[0]?.foodItems?.map((item) => (
-                        <div key={item._id} className={styles.gridItem}>
-                            <h4>{item.foodname}</h4>  {/* ✅ correct field */}
-                            
-                            <video
-                                src={item.foodvideo}   
-                                className={styles.gridVideo}
-                                controls
-                                muted
-                            />
-                            <p>{item.description}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
+        <div className={styles.meal}>
+          <h3 className={styles.mealTitle}>Meal</h3>
+          <div className={styles.totalMeal}>
+            Total Meal: {partnerList[0]?.foodItems?.length || 0} {""}
+            <span>Customer Serve: 3k</span>
+          </div>
         </div>
-    )
-}
 
-export default PartnerProfile
+        <div className={styles.grid}>
+          {partnerList[0]?.foodItems?.map((item) => (
+            <div key={item._id} className={styles.gridItem}>
+              <h4>{item.foodname}</h4> {/* ✅ correct field */}
+              <video
+                src={item.foodvideo}
+                className={styles.gridVideo}
+                controls
+                muted
+              />
+              <p>{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PartnerProfile;

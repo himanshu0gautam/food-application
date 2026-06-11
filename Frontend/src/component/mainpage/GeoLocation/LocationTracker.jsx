@@ -5,11 +5,11 @@ const LocationTracker = ({ onLocationFetched }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // 1. Check if location is already saved when the user opens the website
+
   useEffect(() => {
     const savedAddress = localStorage.getItem('user_address');
     if (!savedAddress) {
-      setShowModal(true); // Show custom alert if no location is stored
+      setShowModal(true);
     }
   }, []);
 

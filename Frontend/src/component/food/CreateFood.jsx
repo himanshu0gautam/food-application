@@ -80,7 +80,7 @@ const CreateFood = () => {
 
   return (
     <form className={styles.form} onSubmit={submit}>
-      <h2>Create Food</h2>
+      <h2>Food video</h2>
       {error && <div className={styles.error}>{error}</div>}
 
       <label className={styles.field}>
@@ -165,7 +165,7 @@ const CreateFood = () => {
       </div>
 
       <div className={styles.actions}>
-        <button className={styles.createbtn} type="submit" disabled={submitting || files.length === 0}>{submitting ? 'Uploading...' : 'Save Food'}</button>
+        <button className={styles.createbtn} type="submit" disabled={submitting || files.length === 0}>{submitting ? 'Uploading...' : 'Publish Video'}</button>
       </div>
     </form>
   )

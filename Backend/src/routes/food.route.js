@@ -2,16 +2,11 @@ import dotenv from "dotenv"
 import express from "express"
 import { createFood, getFoodItems, getSaveFood, likeFoodController, saveFood, FoodCommnet, ReplyComment, getAllComments } from "../controller/food.controller.js";
 import { authFoodPartnerMiddleware, authUserMiddleware, } from "../middleware/auth.middleware.js"
+import { upload } from "../middleware/multer.middleware.js";
 
 dotenv.config();
 
 const router = express.Router();
-
-import multer from "multer";
-
-const upload = multer({ 
-   dest: 'uploads/'
- });
 
 //ye route [protected] hoga iska liya ek middelware use krega
 // accept any single file field (more tolerant to client field names)

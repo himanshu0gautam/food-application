@@ -28,6 +28,11 @@ const foodPartnerSchema = new mongoose.Schema({
         type: String,
         enum: ["pending", "approved", "rejected"],
         default: "pending",
+    },
+    role:{
+        type: String,
+        enum: ["foodpartner"],
+        default: "foodpartner"
     }
 }, {timestamps: true})
 

@@ -1,21 +1,45 @@
 // import ImageKit from "imagekit";
 import { v2 as cloudinary } from "cloudinary"
+import fs from "fs"
 import dotenv from "dotenv";
 
-
 dotenv.config();
-
-// export const imagekit = new ImageKit({
-//   publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
-//   privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
-//   urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT,
-// });
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
+
+const uploadOnCloudinary = async (localFilePath) =>{
+  try {
+    if(!localFilePath) return null
+
+    const response = await cloudinary.uploader.upload(localFilePath,{
+      resource_type: "auto"
+    })
+    console.log("file is uploaded on cloud", response.url);
+    return response;
+    
+  } catch (error) {
+    await fs.unlinkSync(localFilePath)
+    console.log("file deleted");
+    return null
+  }
+}
+
+
+export { cloudinary, uploadOnCloudinary };
+
+
+
+
+
+// export const imagekit = new ImageKit({
+//   publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
+//   privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+//   urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT,
+// });
 
 // async function uploadFile(file, fileName) {
 //   const result = await imagekit.upload({
@@ -25,5 +49,3 @@ cloudinary.config({
 
 //   return result;
 // }
-
-export { cloudinary };
