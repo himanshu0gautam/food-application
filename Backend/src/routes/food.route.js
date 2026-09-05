@@ -11,7 +11,7 @@ const router = express.Router();
 //ye route [protected] hoga iska liya ek middelware use krega
 // accept any single file field (more tolerant to client field names)
 router.post ("/upload", authFoodPartnerMiddleware, upload.any(), createFood )
-router.get("/upload", authUserMiddleware, getFoodItems)
+router.get("/getvideo", authUserMiddleware, getFoodItems)
 
 // like 
 router.post("/like", authUserMiddleware, likeFoodController)

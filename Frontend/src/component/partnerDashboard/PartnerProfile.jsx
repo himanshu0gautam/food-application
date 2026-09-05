@@ -3,7 +3,7 @@ import styles from "./PartnerProfile.module.css";
 import axios from "axios";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { GrClose } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, Links } from "react-router-dom";
 
 // const sampleThumbs = [
 //     '/video/v1.mp4',
@@ -69,8 +69,10 @@ const PartnerProfile = () => {
                     <GrClose />
                   </div>
                   <div className={styles.menuItems}>
+                    <Link to="/food/create-dish" className={styles.navlink}>
                     <div className={styles.menuItem}>Create food</div>
-                    <Link to="/food/create-food" className={styles.navlink}>
+                    </Link>
+                    <Link to="/food/create-video" className={styles.navlink}>
                     <div className={styles.menuItem}>video</div>
                     </Link>
                     <div className={styles.menuItem}>edit profile</div>

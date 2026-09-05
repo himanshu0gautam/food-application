@@ -2,10 +2,10 @@ import { createClient } from "redis";
 
 const client = createClient({
   username: "default",
-  password: "Cwo8RuH9vUEXyv86f84Oi1NNmyIMfQTr",
+  password: "OoZPupT0W9RHYAiveGLaWz4urdQh4xg9",
   socket: {
-    host: "sheep-strategic-powder-75383.db.redis.io",
-    port: 15671,
+    host:'redis-18197.c9.us-east-1-4.ec2.cloud.redislabs.com',
+    port: 18197,
   },
 });
 

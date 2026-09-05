@@ -18,14 +18,6 @@ const createDish = asyncHandler(async (req, res) => {
         throw new ApiError(409,"food image is required" )
     }
 
-    // if (files?.path) {
-    //   imgPath = files.path.split(path.sep).join("/");
-    // }
-
-    // if (!image) {
-    //   throw new ApiError(400, "NO image uploaded");
-    // }
-
     const imageUpload = await uploadOnCloudinary(foodImagepath);
     // const SubimageUpload = await uploadOnCloudinary(subImagepath);
 
@@ -43,7 +35,7 @@ const createDish = asyncHandler(async (req, res) => {
       typeOfFood: req.body.typeOfFood,
       preprationTime: req.body.preprationTime,
       distance: req.body.distance,
-      dishPrice: req.body.dishPrice,
+      foodprice: req.body.dishPrice,
       dishHalfPrice: req.body.dishHalfPrice,
       calories: req.body.calories,
     });
@@ -72,4 +64,10 @@ const createDish = asyncHandler(async (req, res) => {
   }
 });
 
-export { createDish };
+const getSaveFood = asyncHandler(async (req, res) => {
+  const dishitem = await dishModel.find({});
+
+  res.status(200).json(new ApiResponse(200, dishitem, "dishItem food fetched successfully"))
+})
+
+export { createDish, getSaveFood };

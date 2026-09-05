@@ -26,6 +26,7 @@ import { IoNotificationsOutline } from "react-icons/io5";
 // import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdRestaurantMenu } from "react-icons/md";
 import BottomNav from '../mainpage/BottomNav/BottomNav';
+import axiosInstance from '../../utils/ApiInstance';
 
 
 const Home = ({ save, v, foodId }) => {
@@ -180,7 +181,7 @@ const Home = ({ save, v, foodId }) => {
 
   const fetchFood = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/food/upload", { withCredentials: true })
+      const res = await axiosInstance.get("/food/getvideo", { withCredentials: true })
       console.log("frontend food successful", res.data);
       setVideos(res.data.foodItems)
 

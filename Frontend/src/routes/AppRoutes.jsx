@@ -2,12 +2,13 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../component/home/Home'
 import Save from '../component/home/Save'
-import CreateFood from '../component/food/CreateFood'
+import CreateVideo from '../component/Createfood/Createvideo'
 import PartnerProfile from '../component/partnerDashboard/PartnerProfile'
 import UserProfile from '../component/UserDashboard/UserProfile'
 import Notification from '../Pages/Notification'
 import ProtectRoute from '../protectRoute/ProtectRoute'
 import FoodDetails from '../Pages/FoodDetails'
+import CreateDish from '../component/Createfood/CreateDish'
 
 
 const AppRoutes = () => {
@@ -15,7 +16,8 @@ const AppRoutes = () => {
       <Routes>
         {/* <Route path="userRegister" element={<UserRegister />} /> */}
         <Route path="save" element={<Save />} />
-        <Route path="create-food" element={<CreateFood />} />
+        <Route path="create-video" element={<CreateVideo />} />
+        <Route path="create-dish" element={<CreateDish />} />
         <Route path="partner-profile" element={
           <ProtectRoute>
             <PartnerProfile />

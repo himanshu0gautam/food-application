@@ -31,7 +31,7 @@
   /* width: 100%; */
   align-items: center;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
 }
 
 .avatar {
@@ -60,10 +60,71 @@
 }
 
 .right {
-  /* width: 100%; */
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 8px;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 12px 8px 0px;
+  gap: 20px;
+}
+
+.username {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.menu {
+  cursor: pointer;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+}
+
+.statsRow {
+  /* background-color: red; */
+  display: flex;
+  gap: 20px;
+  font-size: 16px;
+}
+
+.statItem {
+  color: rgba(255, 255, 255, 0.552);
+}
+
+.statCount {
+  font-weight: 600;
+}
+
+.bioSection {
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+  padding: 10px 0px;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.fullName {
+  font-weight: 600;
+}
+
+.bio {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.websiteLink {
+  color: #00376b;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .businessName {
