@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import MainPage from "../component/mainpage/MainPage";
-import UserRegister from "../component/auth.pages/UserRegister";
-import UserLogin from "../component/auth.pages/UserLogin";
-import FoodPartnerRegister from "../component/auth.pages/PartnerRegister";
-import FoodPartnerLogin from "../component/auth.pages/PartnerLogin";
+import MainPage from ".././component/mainpage/mainPageHome/MainPage";
+import UserRegister from "../component/auth.pages/User/pages/UserRegister";
+import UserLogin from "../component/auth.pages/User/pages/UserLogin";
+import FoodPartnerRegister from "../component/auth.pages/Patner/pages/PartnerRegister";
+import FoodPartnerLogin from "../component/auth.pages/Patner/pages/PartnerLogin";
 import AppRoutes from "./AppRoutes";
 import ProtectRoute from "../protectRoute/ProtectRoute";
 

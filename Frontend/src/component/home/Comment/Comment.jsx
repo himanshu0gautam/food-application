@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from './Comment.module.css'
-import socket from "../../../src/socket.jsx"
+import socket from "../../../socket.jsx"
 import { AiOutlineClose } from "react-icons/ai";
 import axios from "axios";
 

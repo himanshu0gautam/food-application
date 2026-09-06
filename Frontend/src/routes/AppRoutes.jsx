@@ -1,14 +1,14 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Home from '../component/home/Home'
-import Save from '../component/home/Save'
-import CreateVideo from '../component/Createfood/Createvideo'
-import PartnerProfile from '../component/partnerDashboard/PartnerProfile'
-import UserProfile from '../component/UserDashboard/UserProfile'
+import Home from '../component/home/reelHome/Home'
+import Save from '../component/home/Save/Save'
+import CreateVideo from '../component/Createfood/VideoReels/pages/Createvideo'
+import PartnerProfile from '../component/partnerDashboard/pages/PartnerProfile'
+import UserProfile from '../component/UserDashboard/pages/UserProfile'
 import Notification from '../Pages/Notification'
 import ProtectRoute from '../protectRoute/ProtectRoute'
-import FoodDetails from '../Pages/FoodDetails'
-import CreateDish from '../component/Createfood/CreateDish'
+import FoodDetails from '../component/mainpage/foodDetails/pages/FoodDetails'
+import CreateDish from '../component/Createfood/Dish/pages/CreateDish'
 
 
 const AppRoutes = () => {

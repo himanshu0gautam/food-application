@@ -13,7 +13,7 @@ import { GoPlay } from "react-icons/go";
 import { BsCart3 } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 import { useNavigate, Link } from 'react-router-dom'
-import Comment from '../home/Comment'
+import Comment from '../Comment/Comment'
 import { FaRegComment } from "react-icons/fa";
 import { RiAddLargeFill } from "react-icons/ri";
 // import { SiCarto } from "react-icons/si";
@@ -25,8 +25,8 @@ import { IoIosSearch } from "react-icons/io";
 import { IoNotificationsOutline } from "react-icons/io5";
 // import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdRestaurantMenu } from "react-icons/md";
-import BottomNav from '../mainpage/BottomNav/BottomNav';
-import axiosInstance from '../../utils/ApiInstance';
+import BottomNav from '../../mainpage/BottomNav/BottomNav';
+import axiosInstance from '../../../utils/ApiInstance';
 
 
 const Home = ({ save, v, foodId }) => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./UserProfile.module.css";
 import axios from "axios";
-import Save from "../home/Save";
+import Save from "../../home/Save/Save";
 import { useNavigate } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { GrClose } from "react-icons/gr";

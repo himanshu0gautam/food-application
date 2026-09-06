@@ -1,12 +1,12 @@
 import React from "react";
 import style from "./AllFood.module.css";
 import { Link } from "react-router-dom";
-import f1 from "../../../assets/f1.jpg";
+import f1 from "../../../../assets/f1.jpg";
 import { MdOutlineTimer } from "react-icons/md";
 import { BiSolidOffer } from "react-icons/bi";
 import axios from "axios";
 import { useState } from "react";
-import axiosInstance from "../../../utils/ApiInstance";
+import axiosInstance from "../../../../utils/ApiInstance";
 import { useEffect } from "react";
 
 // const fooditem = [

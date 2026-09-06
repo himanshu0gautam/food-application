@@ -3,7 +3,7 @@ import styles from "./createDish.module.css";
 import { useState } from "react";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../utils/ApiInstance";
+import axiosInstance from "../../../../utils/ApiInstance";
 
 const max_image = 4;
 
